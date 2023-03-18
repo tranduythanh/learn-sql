@@ -136,7 +136,7 @@ select * from BanDiem
 set dateformat dmy
 go
 insert into SinhVien values('98TH001', N'Nguyen Van',  N'An',    '06/08/80', '01', '03/09/98', '98TH', 'Yes', '12 Tran Hung Dao, Q.1',   '8234512') 
-insert into SinhVien values('98TH002', N'Le Thi',      N'An',    '17/10/79', '01', '03/09/98', '98TH', 'No',  '12 CMT8, Q.Tan Binh',     '8234512') 
+insert into SinhVien values('98TH002', N'Le Thi',      N'An',    '17/10/79', '01', '03/09/98', '98TH', 'No',  '12 CMT8, Q.Tan Binh',     '0303234342')
 insert into SinhVien values('98VT001', N'Nguyen Duc',  N'Binh',  '25/11/81', '02', '03/09/98', '98VT', 'Yes', '12 Lac Long Quan, Q.11',  '8234512') 
 insert into SinhVien values('98VT002', N'Tran Ngoc',   N'Anh',   '19/08/80', '02', '03/09/98', '98VT', 'No',  '12 Tran Hung Dao, Q.1',    NULL)
 insert into SinhVien values('99TH001', N'Ly Van Hung', N'Dung',  '27/09/81', '03', '05/10/99', '99TH', 'Yes', '12 CMT8, Q.Tan Binh',     '8234512') 
@@ -144,8 +144,8 @@ insert into SinhVien values('99TH002', N'Van Minh',    N'Hoang', '01/01/81', '04
 insert into SinhVien values('99TH003', N'Nguyen', 	   N'Tuan',  '12/01/80', '03', '05/10/99', '99TH', 'Yes', '12 Tran Hung Dao, Q.5',    NULL)
 insert into SinhVien values('99TH004', N'Tran Van',    N'Minh',  '25/06/81', '04', '05/10/99', '99TH', 'Yes', '12 Dien Bien Phu, Q.3',   '8234512') 
 insert into SinhVien values('99TH005', N'Nguyen Thai', N'Minh',  '01/01/80', '04', '05/10/99', '99TH', 'Yes', '12 Le Dai Hanh, Q.11',     NULL)
-insert into SinhVien values('99VT001', N'Le Ngoc',     N'Mai',   '21/06/82', '01', '05/10/99', '99VT', 'No',  '12 Tran Hung Dao, Q.1',   '8234512') 
-insert into SinhVien values('99QT001', N'Nguyen Thi',  N'Oanh',  '19/08/73', '04', '05/10/99', '99QT', 'No',  '12 Hung Vuong, Q.5',      '8234512') 
+insert into SinhVien values('99VT001', N'Le Ngoc',     N'Mai',   '21/06/82', '01', '05/10/99', '99VT', 'No',  '12 Tran Hung Dao, Q.1',   '0903124534')
+insert into SinhVien values('99QT001', N'Nguyen Thi',  N'Oanh',  '19/08/73', '04', '05/10/99', '99QT', 'No',  '12 Hung Vuong, Q.5',      '0901656324')
 insert into SinhVien values('99QT002', N'Le My',       N'Thanh', '20/05/76', '04', '05/10/99', '99QT', 'No',  '12 Pham Ngoc Thach, Q.3',  NULL)
 select * from SinhVien
 ----------------------------------------------------------------------
