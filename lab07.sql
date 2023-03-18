@@ -46,7 +46,7 @@ create table MonHoc
 
 go
 
-create table BanDiem
+create table BangDiem
 
 (
 	MSSV	 char(7) not null,
