@@ -177,7 +177,15 @@ FROM
 	JOIN MonHoc AS mh ON mh.MSMH = bd.MSMH
 GROUP BY l.MSLop, l.TenLop;
 
--- 25 =====
+-- 25
+
+SELECT bd.MSSV, bd.MSMH, mh.TenMH, MAX(Diem) as Diem, MAX(Diem)*mh.HeSo AS "Diem x HeSo"
+	FROM BangDiem as bd
+	JOIN MonHoc as mh ON mh.MSMH = bd.MSMH
+GROUP BY bd.MSSV, bd.MSMH, mh.TenMH, mh.HeSo
+ORDER BY bd.MSSV;
+
+-- 26 =====
 SELECT
 	bd.LanThi,
 	bd.MSSV,
@@ -212,3 +220,8 @@ ORDER BY
 	sv.MSSV;
 
 -- 27
+SELECT l.NienKhoa, k.MSKhoa, k.TenKhoa, COUNT(sv.MSSV)
+	FROM SinhVien AS sv
+	JOIN Lop AS l ON l.MSLop = sv.MSLop
+	JOIN Khoa AS k ON l.MSKhoa = k.MSKhoa
+	GROUP BY l.NienKhoa, k.MSKhoa, k.TenKhoa;
