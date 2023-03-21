@@ -32,10 +32,10 @@ create table Lop
 	TenLop	nvarchar(30) not null,		
 	NgayKG  datetime not null,
 	HocPhi	int not null,
-	Ca		int not null,
+	Ca		int not null FOREIGN KEY REFERENCES CaHoc(Ca),
 	SoTiet	int not null,
 	SoHV    int not null,
-	MSGV	char(4)
+	MSGV	char(4) FOREIGN KEY REFERENCES GiaoVien(MSGV)
 )
 
 go
@@ -47,7 +47,7 @@ create table HocVien
     Ten			nvarchar(30) not null,
 	NgaySinh	datetime not null,
 	Phai        nvarchar(3),
-	MaLop		char(4)
+	MaLop		char(4) FOREIGN KEY REFERENCES Lop(MaLop)
 )
 
 go
@@ -55,7 +55,7 @@ go
 create table HocPhi
 (
 	SoBL		char(4) primary key,
-	MSHV		char(6) not null,
+	MSHV		char(6) not null FOREIGN KEY REFERENCES HocVien(MSHV),
 	NgayThu		datetime not null,
 	SoTien		int not null,
 	NoiDung		nvarchar(30) not null,
