@@ -133,14 +133,14 @@ SELECT * FROM SinhVien WHERE MSSV NOT IN (SELECT DISTINCT(MSSV) FROM BangDiem);
 
 -- 22
 SELECT
-	l.MaLop,
+	l.MSLop,
 	l.TenLop,
 	count(*) AS SoLuongSV
 FROM
 	SinhVien AS sv
-	JOIN Lop AS l ON l.MaLop = sv.MSLop
+	JOIN Lop AS l ON l.MSLop = sv.MSLop
 GROUP BY
-	l.MaLop,
+	l.MSLop,
 	l.TenLop
 ORDER BY count(*);
 
@@ -165,7 +165,7 @@ GROUP BY
 
 -- 24
 SELECT
-	l.MaLop,
+	l.MSLop,
 	l.TenLop,
 	COUNT(CASE WHEN bd.Diem >= 5 THEN 1 END) AS "SoSVDat",
 	CAST(COUNT(CASE WHEN bd.Diem >= 5 THEN 1 END) AS float)/COUNT(*)*100 AS "TiLeDat",
@@ -173,10 +173,10 @@ SELECT
 	CAST(COUNT(CASE WHEN bd.Diem <  5 THEN 1 END) AS float)/COUNT(*)*100 AS "TiLeKhongDat"
 FROM
 	SinhVien AS sv
-	JOIN Lop AS l ON l.MaLop = sv.MSLop
+	JOIN Lop AS l ON l.MSLop = sv.MSLop
 	JOIN BangDiem AS bd ON sv.MSSV = bd.MSSV
 	JOIN MonHoc AS mh ON mh.MSMH = bd.MSMH
-GROUP BY l.MaLop, l.TenLop;
+GROUP BY l.MSLop, l.TenLop;
 
 -- 25 =====
 SELECT
