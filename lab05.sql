@@ -26,8 +26,8 @@ go
 
 create table Tour_TP
 (
-	MaTour	char(4),
-	MaTP	char(2),		
+	MaTour	char(4) NOT NULL FOREIGN KEY REFERENCES Tour(MaTour),
+	MaTP	char(2) NOT NULL FOREIGN KEY REFERENCES ThanhPho(MaTP),		
 	SoNgay	int
 )
 
@@ -35,7 +35,7 @@ go
 
 create table Lich_TourDL
 (
-	MaTour			char(4),
+	MaTour			char(4) NOT NULL FOREIGN KEY REFERENCES Tour(MaTour),
 	NgayKhoihanh	datetime,		
 	TenHDV          nvarchar(30),
 	SoNguoi         int,
