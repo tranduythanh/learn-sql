@@ -19,7 +19,7 @@ go
 create table Lop
 
 (
-	MaLop	 char(4) primary key,
+	MALop	 char(4) primary key,
 	TenLop	 nvarchar(50) not null,		
 	MSKhoa   char(2) not null ,
 	NienKhoa int
@@ -106,32 +106,32 @@ insert into MonHoc values('VB01', N'Truyen so lieu',      3)
 insert into MonHoc values('XA01', N'Vat ly dai cuong',    2)
 select * from MonHoc
 
-insert into BanDiem values('98TH001', 'TA01', 1, 8.5)
-insert into BanDiem values('98TH001', 'TA02', 1, 8)
-insert into BanDiem values('98TH002', 'TA01', 1, 4)
-insert into BanDiem values('98TH002', 'TA01', 2, 5.5)
-insert into BanDiem values('98TH001', 'TB01', 1, 7.5)
-insert into BanDiem values('98TH002', 'TB01', 1, 8)
-insert into BanDiem values('98VT001', 'VA01', 1, 4)
-insert into BanDiem values('98VT001', 'VA01', 2, 5)
-insert into BanDiem values('98VT002', 'VA02', 1, 7.5)
-insert into BanDiem values('99TH001', 'TA01', 1, 4)
-insert into BanDiem values('99TH001', 'TA01', 2, 6)
-insert into BanDiem values('99TH001', 'TB01', 1, 6.5)
-insert into BanDiem values('99TH002', 'TB01', 1, 10)
-insert into BanDiem values('99TH002', 'TB01', 1, 9)
-insert into BanDiem values('99TH003', 'TA02', 1, 7.5)
-insert into BanDiem values('99TH003', 'TB01', 1, 3)
-insert into BanDiem values('99TH003', 'TB01', 2, 6)
-insert into BanDiem values('99TH003', 'TB02', 1, 8)
-insert into BanDiem values('99TH004', 'TB02', 1, 2)
-insert into BanDiem values('99TH004', 'TB02', 2, 4)
-insert into BanDiem values('99TH004', 'TB02', 3, 3)
-insert into BanDiem values('99QT001', 'QA01', 1, 7)
-insert into BanDiem values('99QT001', 'QA02', 1, 6.5)
-insert into BanDiem values('99QT002', 'QA01', 1, 8.5)
-insert into BanDiem values('99QT002', 'QA02', 1, 9)
-select * from BanDiem
+insert into BangDiem values('98TH001', 'TA01', 1, 8.5)
+insert into BangDiem values('98TH001', 'TA02', 1, 8)
+insert into BangDiem values('98TH002', 'TA01', 1, 4)
+insert into BangDiem values('98TH002', 'TA01', 2, 5.5)
+insert into BangDiem values('98TH001', 'TB01', 1, 7.5)
+insert into BangDiem values('98TH002', 'TB01', 1, 8)
+insert into BangDiem values('98VT001', 'VA01', 1, 4)
+insert into BangDiem values('98VT001', 'VA01', 2, 5)
+insert into BangDiem values('98VT002', 'VA02', 1, 7.5)
+insert into BangDiem values('99TH001', 'TA01', 1, 4)
+insert into BangDiem values('99TH001', 'TA01', 2, 6)
+insert into BangDiem values('99TH001', 'TB01', 1, 6.5)
+insert into BangDiem values('99TH002', 'TB01', 1, 10)
+insert into BangDiem values('99TH002', 'TB01', 1, 9)
+insert into BangDiem values('99TH003', 'TA02', 1, 7.5)
+insert into BangDiem values('99TH003', 'TB01', 1, 3)
+insert into BangDiem values('99TH003', 'TB01', 2, 6)
+insert into BangDiem values('99TH003', 'TB02', 1, 8)
+insert into BangDiem values('99TH004', 'TB02', 1, 2)
+insert into BangDiem values('99TH004', 'TB02', 2, 4)
+insert into BangDiem values('99TH004', 'TB02', 3, 3)
+insert into BangDiem values('99QT001', 'QA01', 1, 7)
+insert into BangDiem values('99QT001', 'QA02', 1, 6.5)
+insert into BangDiem values('99QT002', 'QA01', 1, 8.5)
+insert into BangDiem values('99QT002', 'QA02', 1, 9)
+select * from BangDiem
 
 set dateformat dmy
 go
