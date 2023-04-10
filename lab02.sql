@@ -11,7 +11,7 @@ go
 create table ToSanXuat
 (
 	MaTSX	char(4) primary key,
-	TenTSX	nvarchar(10) not null
+	TenTSX	nvarchar(10) not null unique
 )
 
 go
@@ -34,7 +34,7 @@ create table SanPham
 	MASP	 char(5) primary key,
 	TenSP	 nvarchar(30) not null,
 	DVT      nvarchar(30) not null,
-    TienCong int not null
+    TienCong int not null check (TienCong > 0)
 )
 
 go
@@ -44,7 +44,7 @@ create table ThanhPham
 	MACN	char(5) not null references CongNhan(MACN),
 	MaSP    char(5) not null references SanPham(MaSP),
     Ngay    datetime not null,
-    SoLuong int not null,
+    SoLuong int not null check (SoLuong > 0),
     primary key (MACN, MaSP, Ngay)
 )
 
