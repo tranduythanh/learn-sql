@@ -267,4 +267,28 @@ END;
 
 EXEC TongSoLuongSX 'SP001', '2007/01/01', '2007/02/19';
 
-;
+
+-- B.a
+IF OBJECT_ID('PrintCongNhan') IS NOT NULL DROP PROCEDURE PrintCongNhan;
+CREATE PROCEDURE PrintCongNhan
+	@MaTSX char(4)
+AS
+BEGIN
+	SELECT * FROM CongNhan WHERE MaTSX = @MaTSX
+END;
+EXEC PrintCongNhan 'TS01';
+
+-- B.b 
+IF OBJECT_ID('ChamCong') IS NOT NULL DROP PROCEDURE ChamCong;
+CREATE PROCEDURE ChamCong
+	@MACN  char(5),
+	@Thang int
+AS
+BEGIN
+SELECT sp.TenSP, sp.DVT, tp.SoLuong,
+	tp.SoLuong*sp.TienCong AS ThanhTien 
+	FROM ThanhPham AS tp 
+	JOIN SanPham AS sp ON tp.MaSP = sp.MASP 
+	WHERE tp.MACN = @MACN AND MONTH(Ngay) = @Thang
+END;
+EXEC ChamCong 'CN001', 2;
