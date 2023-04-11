@@ -267,6 +267,7 @@ END;
 
 EXEC TongSoLuongSX 'SP001', '2007/01/01', '2007/02/19';
 
+;
 
 -- B.a
 IF OBJECT_ID('PrintCongNhan') IS NOT NULL DROP PROCEDURE PrintCongNhan;
@@ -282,13 +283,14 @@ EXEC PrintCongNhan 'TS01';
 IF OBJECT_ID('ChamCong') IS NOT NULL DROP PROCEDURE ChamCong;
 CREATE PROCEDURE ChamCong
 	@MACN  char(5),
-	@Thang int
+	@Thang int,
+	@Nam   int
 AS
 BEGIN
 SELECT sp.TenSP, sp.DVT, tp.SoLuong,
 	tp.SoLuong*sp.TienCong AS ThanhTien 
 	FROM ThanhPham AS tp 
 	JOIN SanPham AS sp ON tp.MaSP = sp.MASP 
-	WHERE tp.MACN = @MACN AND MONTH(Ngay) = @Thang
+	WHERE tp.MACN = @MACN AND MONTH(Ngay) = @Thang AND YEAR(Ngay) = @Nam
 END;
 EXEC ChamCong 'CN001', 2;
