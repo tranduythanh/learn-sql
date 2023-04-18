@@ -158,4 +158,62 @@ SELECT * FROM Bao_TChi WHERE DinhKy = N'Bán nguyệt san';
 WITH ThongKe AS (SELECT MaBaoTC, COUNT(MaKH) AS SLKH FROM DatBao GROUP BY MaBaoTC)
 SELECT * FROM Bao_TChi WHERE MaBaoTC IN (
 	SELECT MaBaoTC FROM ThongKe WHERE SLKH >= 3
+);
+
+
+
+-- A.1 Tính tổng số tiền mua báo/tạp chí của một khách hàng cho trước
+IF OBJECT_ID('TongTienMuaBao') IS NOT NULL DROP FUNCTION TongTienMuaBao;
+CREATE FUNCTION dbo.TongTienMuaBao (
+	@MaKH char(4)
 )
+RETURNS INT
+AS 
+BEGIN
+	DECLARE @sum INT;
+	SELECT @sum = SUM(db.SLMua*btc.GiaBan) FROM DatBao AS db 
+	JOIN Bao_TChi AS btc ON db.MaBaoTC = btc.MaBaoTC 
+	WHERE MaKH = @MaKH
+	RETURN @sum
+END;
+SELECT dbo.TongTienMuaBao('KH01');
+
+
+-- A.2 Tính tổng doanh thu của tờ báo/tạp chí cho trước
+IF OBJECT_ID('TongDoanhThu') IS NOT NULL DROP FUNCTION TongDoanhThu;
+CREATE FUNCTION dbo.TongDoanhThu (
+	@MaBaoTC char(4)
+)
+RETURNS INT
+AS 
+BEGIN
+	DECLARE @sum INT;
+	SELECT @sum = SUM(db.SLMua*btc.GiaBan) FROM DatBao AS db 
+	JOIN Bao_TChi AS btc ON db.MaBaoTC = btc.MaBaoTC 
+	WHERE btc.MaBaoTC = @MaBaoTC;
+	RETURN @sum
+END;
+SELECT dbo.TongDoanhThu('PN01');
+
+-- B.1 In danh mục báo/tạp chí phải giao cho 1 khách hàng cho trước.
+IF OBJECT_ID('DanhMucCuaKhach') IS NOT NULL DROP PROCEDURE DanhMucCuaKhach;
+CREATE PROCEDURE DanhMucCuaKhach
+	@MaKH char(4)
+AS
+BEGIN
+	SELECT * FROM Bao_TChi 
+	WHERE MaBaoTC IN (SELECT DISTINCT(MaBaoTC) FROM DatBao WHERE MaKH = @MaKH)
+END;
+EXEC DanhMucCuaKhach 'KH01';
+	
+
+-- B.2 In danh sách khách hàng đặt mua báo/tạp chí cho trước.
+IF OBJECT_ID('DSKhachCanGiao') IS NOT NULL DROP PROCEDURE DSKhachCanGiao;
+CREATE PROCEDURE DSKhachCanGiao
+	@MaBaoTC char(4)
+AS
+BEGIN
+	SELECT * FROM KhachHang 
+	WHERE MaKH IN (SELECT DISTINCT(MaKH) FROM DatBao WHERE MaBaoTC = @MaBaoTC)
+END;
+EXEC DSKhachCanGiao 'PN01';
