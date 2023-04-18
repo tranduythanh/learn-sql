@@ -270,27 +270,32 @@ EXEC TongSoLuongSX 'SP001', '2007/01/01', '2007/02/19';
 ;
 
 -- B.a
-IF OBJECT_ID('PrintCongNhan') IS NOT NULL DROP PROCEDURE PrintCongNhan;
-CREATE PROCEDURE PrintCongNhan
+IF OBJECT_ID('PrintCongNhan') IS NOT NULL DROP FUNCTION PrintCongNhan;
+CREATE FUNCTION dbo.PrintCongNhan(
 	@MaTSX char(4)
+)
+RETURNS TABLE
 AS
-BEGIN
+RETURN (
 	SELECT * FROM CongNhan WHERE MaTSX = @MaTSX
-END;
-EXEC PrintCongNhan 'TS01';
+);
+
+SELECT * FROM dbo.PrintCongNhan('TS01');
 
 -- B.b 
-IF OBJECT_ID('ChamCong') IS NOT NULL DROP PROCEDURE ChamCong;
-CREATE PROCEDURE ChamCong
+IF OBJECT_ID('ChamCong') IS NOT NULL DROP FUNCTION ChamCong;
+CREATE FUNCTION ChamCong(
 	@MACN  char(5),
 	@Thang int,
 	@Nam   int
-AS
-BEGIN
+)
+RETURNS TABLE
+AS RETURN (
 SELECT sp.TenSP, sp.DVT, tp.SoLuong,
 	tp.SoLuong*sp.TienCong AS ThanhTien 
 	FROM ThanhPham AS tp 
 	JOIN SanPham AS sp ON tp.MaSP = sp.MASP 
 	WHERE tp.MACN = @MACN AND MONTH(Ngay) = @Thang AND YEAR(Ngay) = @Nam
-END;
-EXEC ChamCong 'CN001', 2;
+);
+
+SELECT * FROM dbo.ChamCong('CN001', 2, 2007);
