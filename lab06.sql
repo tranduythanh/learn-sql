@@ -10,8 +10,8 @@ go
 create table CaHoc
 (
 	Ca		    int primary key,		
-	GioBatDau	varchar(5) not null,
-	GioKetThuc	varchar(5) not null
+	GioBatDau	time not null,
+	GioKetThuc	time not null
 )
 
 go
@@ -31,9 +31,9 @@ create table Lop
 	MaLop	char(4) primary key,
 	TenLop	nvarchar(30) not null,		
 	NgayKG  datetime not null,
-	HocPhi	int not null,
+	HocPhi	int not null CHECK (HocPhi > 0),
 	Ca		int not null FOREIGN KEY REFERENCES CaHoc(Ca),
-	SoTiet	int not null,
+	SoTiet	int not null CHECK (SoTiet > 0),
 	SoHV    int not null,
 	MSGV	char(4) FOREIGN KEY REFERENCES GiaoVien(MSGV)
 )
@@ -46,7 +46,7 @@ create table HocVien
 	Ho			nvarchar(30) not null,
     Ten			nvarchar(30) not null,
 	NgaySinh	datetime not null,
-	Phai        nvarchar(3),
+	Phai        nvarchar(3) CHECK (Phai IN (N'Nam', N'Nữ')),
 	MaLop		char(4) FOREIGN KEY REFERENCES Lop(MaLop)
 )
 
@@ -57,7 +57,7 @@ create table HocPhi
 	SoBL		char(4) primary key,
 	MSHV		char(6) not null FOREIGN KEY REFERENCES HocVien(MSHV),
 	NgayThu		datetime not null,
-	SoTien		int not null,
+	SoTien		int not null CHECK (SoTien > 0),
 	NoiDung		nvarchar(30) not null,
     NguoiThu	nvarchar(30) not null
 )
