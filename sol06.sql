@@ -136,8 +136,8 @@ set dateformat dmy
 GO
 
 -- Insert more example data into Lop
-insert into Lop values('E116', 'Excel 2-4-6', '15/03/2008', 120000, 1, 45, 2, 'G005')
-insert into Lop values('W125', 'Word 3-5-7',  '01/04/2008', 100000, 2, 30, 1, 'G006')
+insert into Lop values('E116', 'Excel 2-4-6', '15/03/2008', 120000, 1, 45, 3, 'G005')
+insert into Lop values('W125', 'Word 3-5-7',  '01/04/2008', 100000, 2, 30, 2, 'G006')
 insert into Lop values('A076', 'Access 3-5-7','25/12/2008', 150000, 3, 60, 2, 'G007')
 
 -- Insert more example data into HocVien
@@ -154,6 +154,17 @@ insert into HocPhi values('0015', 'E11602', '15/04/2008', 4000,  'HP Excel 2-4-6
 insert into HocPhi values('0016', 'W12501', '01/05/2008', 5000,  'HP Word 3-5-7',   N'Vân')
 insert into HocPhi values('0017', 'A07601', '25/01/2009', 5000,  'HP Access 3-5-7', N'Vân')
 insert into HocPhi values('0018', 'A07602', '25/01/2009', 5000,  'HP Access 3-5-7', N'Vân')
+
+SET DATEFORMAT dmy;
+GO
+-- Insert more example data into HocVien
+INSERT INTO HocVien VALUES ('E11603', N'Nguyễn Văn', N'Thành', '12/06/1997', N'Nam', 'E116');
+INSERT INTO HocVien VALUES ('W12502', N'Trần Thị', N'Thảo', '10/09/1998', N'Nữ', 'W125');
+
+-- Insert more example data into HocPhi
+INSERT INTO HocPhi VALUES ('0019', 'E11603', '15/04/2008', 2000, 'HP Excel 2-4-6', N'Lan');
+INSERT INTO HocPhi VALUES ('0020', 'W12502', '01/05/2008', 3000, 'HP Word 3-5-7', N'Vân');
+
 
 
 ALTER TABLE GiaoVien DROP CONSTRAINT IF EXISTS UQ_DienThoai;
@@ -173,62 +184,52 @@ ALTER TABLE CaHoc DROP CONSTRAINT IF EXISTS CHK_GioBatDauKetThuc;
 ALTER TABLE CaHoc ADD CONSTRAINT CHK_GioBatDauKetThuc CHECK (GioKetThuc >= GioBatDau);
 
 -- 4b Sỉ số của một lớp học không quá 30 và đúng bằng số học viên thuộc lớp đó.
-IF OBJECT_ID('TongSoHVLop') IS NOT NULL DROP FUNCTION TongSoHVLop;
+IF OBJECT_ID('dbo.TongSoHocVienLop') IS NOT NULL DROP FUNCTION dbo.TongSoHocVienLop;
 GO
-CREATE FUNCTION TongSoHVLop(
-	@MaLop char(4)
-)
+
+CREATE FUNCTION dbo.TongSoHocVienLop(@MaLop char(4))
 RETURNS INT
 AS
 BEGIN
-	DECLARE @total INT;
-	(SELECT @total = COUNT(*) FROM HocVien WHERE MaLop = @MaLop)
-	RETURN @total
+    DECLARE @Total INT;
+    SELECT @Total = COUNT(*) FROM HocVien WHERE MaLop = @MaLop;
+    RETURN @Total;
 END;
-
 GO
 
-ALTER TABLE Lop ADD CONSTRAINT CHK_SoHV CHECK (SoHV <= 30 AND SoHV = dbo.TongSoHVLop(MaLop));
+ALTER TABLE Lop ADD CONSTRAINT CHK_SiSoLop CHECK (SoHV <= 30 AND SoHV = dbo.TongSoHocVienLop(MaLop));
 
--- 4.c Tổng số tiền thu của một học viên không vượt quá học phí của lớp mà học viên đó đăng kí học
+-- 4c Tổng số tiền thu của một học viên không vượt quá học phí của lớp mà học viên đó đăng kí học
+IF OBJECT_ID('dbo.HocPhiLop') IS NOT NULL DROP FUNCTION dbo.HocPhiLop;
 GO
 
-IF OBJECT_ID('HocPhiLop') IS NOT NULL DROP FUNCTION HocPhiLop;
-GO
-CREATE FUNCTION HocPhiLop(
-	@MaLop char(4)
-)
-RETURNS INT 
+CREATE FUNCTION dbo.HocPhiLop(@MaLop char(4))
+RETURNS INT
 AS
-BEGIN 
-	DECLARE @n INT;
-	SELECT @n = HocPhi FROM Lop WHERE MaLop = @MaLop
-	RETURN @n
+BEGIN
+    DECLARE @HocPhi INT;
+    SELECT @HocPhi = HocPhi FROM Lop WHERE MaLop = @MaLop;
+    RETURN @HocPhi;
 END;
 GO
 
-SELECT dbo.HocPhiLop('A075');
+IF OBJECT_ID('dbo.TongTienHocVien') IS NOT NULL DROP FUNCTION dbo.TongTienHocVien;
 GO
 
-IF OBJECT_ID('TongTienHV') IS NOT NULL DROP FUNCTION TongTienHV;
-GO
-
-CREATE FUNCTION TongTienHV(
-	@MSHV char(6)
-)
-RETURNS INT 
+CREATE FUNCTION dbo.TongTienHocVien(@MSHV char(6))
+RETURNS INT
 AS
-BEGIN 
-	DECLARE @n INT;
-	SELECT @n = SUM(SoTien) FROM HocPhi WHERE MSHV = @MSHV
-	RETURN @n
+BEGIN
+    DECLARE @TongTien INT;
+    SELECT @TongTien = SUM(SoTien) FROM HocPhi WHERE MSHV = @MSHV;
+    RETURN @TongTien;
 END;
 GO
 
-ALTER TABLE HocPhi DROP CONSTRAINT IF EXISTS CHK_TongTienHV;
+ALTER TABLE HocPhi DROP CONSTRAINT IF EXISTS CHK_TongTienHocVien;
 GO
+ALTER TABLE HocPhi ADD CONSTRAINT CHK_TongTienHocVien CHECK (dbo.TongTienHocVien(MSHV) <= dbo.HocPhiLop(LEFT(MSHV,4)));
 
-ALTER TABLE HocPhi ADD CONSTRAINT CHK_TongTienHV CHECK(dbo.TongTienHV(MSHV) <= dbo.HocPhiLop(LEFT(MSHV, 4)));
 GO
 
 -- 5.a Thêm dữ liệu vào bảng và đảm bảo các ràng buộc toàn vẹn liên quan.
@@ -245,10 +246,26 @@ CREATE PROCEDURE ThemHV
 AS
 BEGIN
 	BEGIN TRY
-	INSERT INTO HocVien (MSHV, Ho, Ten, NgaySinh, Phai, MaLop) VALUES (@MSHV, @Ho, @Ten, @NgaySinh, @Phai, @MaLop)
+		-- Check if MaLop exists in Lop table
+		IF EXISTS (SELECT 1 FROM Lop WHERE MaLop = @MaLop)
+		BEGIN
+			-- Check if the number of students in the class has not exceeded the limit
+			IF dbo.TongSoHocVienLop(@MaLop) < 30
+			BEGIN
+				-- Check if NgaySinh is within the valid range
+				IF @NgaySinh >= '1900-01-01' AND @NgaySinh <= CURRENT_TIMESTAMP
+				BEGIN
+					-- Check if Phai is valid (either 'Nam' or 'Nữ')
+					IF @Phai IN (N'Nam', N'Nữ')
+					BEGIN
+						INSERT INTO HocVien (MSHV, Ho, Ten, NgaySinh, Phai, MaLop) VALUES (@MSHV, @Ho, @Ten, @NgaySinh, @Phai, @MaLop)
+					END
+				END
+			END
+		END
 	END TRY
 	BEGIN CATCH
-	-- 	do nothing
+		-- Do nothing or handle the error as per your requirement
 	END CATCH
 END;
 GO
@@ -266,101 +283,193 @@ CREATE PROCEDURE CapNhatHV
 	@MaLop	    char(4)
 AS
 BEGIN
-	UPDATE HocVien 
-		SET Ho = @Ho, 
-			Ten = @Ten,
-			NgaySinh = @NgaySinh,
-			Phai = @Phai,
-			MaLop = @MaLop
-	WHERE MSHV = @MSHV
+	BEGIN TRY
+		-- Check if MaLop exists in Lop table
+		IF EXISTS (SELECT 1 FROM Lop WHERE MaLop = @MaLop)
+		BEGIN
+			-- Check if NgaySinh is within the valid range
+			IF @NgaySinh >= '1900-01-01' AND @NgaySinh <= CURRENT_TIMESTAMP
+			BEGIN
+				-- Check if Phai is valid (either 'Nam' or 'Nữ')
+				IF @Phai IN (N'Nam', N'Nữ')
+				BEGIN
+					UPDATE HocVien 
+					SET Ho = @Ho, 
+						Ten = @Ten,
+						NgaySinh = @NgaySinh,
+						Phai = @Phai,
+						MaLop = @MaLop
+					WHERE MSHV = @MSHV
+				END
+			END
+		END
+	END TRY
+	BEGIN CATCH
+		-- Do nothing or handle the error as per your requirement
+	END CATCH
 END;
-set dateformat dmy
-EXEC CapNhatHV '123456', N'A', N'B', '06/10/1998', N'Nam', '1234';
 GO
 
 -- 5c Xóa một học viên cho trước.
 IF OBJECT_ID('XoaHV') IS NOT NULL DROP PROCEDURE XoaHV;
 GO
+
 CREATE PROCEDURE XoaHV
-	@MSHV	    char(6)
+	@MSHV char(6)
 AS
 BEGIN
-	DELETE FROM HocVien WHERE MSHV = @MSHV
+	BEGIN TRY
+		-- Check if the specified MSHV exists in the HocVien table
+		IF EXISTS (SELECT 1 FROM HocVien WHERE MSHV = @MSHV)
+		BEGIN
+			DELETE FROM HocVien WHERE MSHV = @MSHV;
+		END
+	END TRY
+	BEGIN CATCH
+		-- Do nothing or handle the error as per your requirement
+	END CATCH
 END;
 GO
+
 -- 5d Cập nhật thông tin của 1 lớp cho trước
 IF OBJECT_ID('CapNhatLop') IS NOT NULL DROP PROCEDURE CapNhatLop;
 GO
 
 CREATE PROCEDURE CapNhatLop
-	@MaLop	char(4),
-	@TenLop	nvarchar(30),
-	@NgayKG	datetime,
-	@HocPhi	int,
-	@Ca	    int,
-	@SoTiet	int,
-	@SoHV	int,
-	@MSGV	char(4)
+	@MaLop char(4),
+	@TenLop nvarchar(30),
+	@NgayKG datetime,
+	@HocPhi int,
+	@Ca int,
+	@SoTiet int,
+	@SoHV int,
+	@MSGV char(4)
 AS
 BEGIN
-	UPDATE Lop 
-		SET
-			TenLop	= @TenLop,
-			NgayKG	= @NgayKG,
-			HocPhi	= @HocPhi,
-			Ca		= @Ca,
-			SoTiet	= @SoTiet,
-			SoHV	= @SoHV,
-			MSGV	= @MSGV
-	WHERE MaLop = @MaLop
+	BEGIN TRY
+		-- Check if the specified MaLop exists in the Lop table
+		IF EXISTS (SELECT 1 FROM Lop WHERE MaLop = @MaLop)
+		BEGIN
+			-- Check if NgayKG is not in the future
+			IF @NgayKG <= CURRENT_TIMESTAMP
+			BEGIN
+				-- Check if SoHV is less than or equal to 30
+				IF @SoHV <= 30
+				BEGIN
+					UPDATE Lop 
+					SET
+						TenLop = @TenLop,
+						NgayKG = @NgayKG,
+						HocPhi = @HocPhi,
+						Ca = @Ca,
+						SoTiet = @SoTiet,
+						SoHV = @SoHV,
+						MSGV = @MSGV
+					WHERE MaLop = @MaLop;
+				END
+			END
+		END
+	END TRY
+	BEGIN CATCH
+		-- Do nothing or handle the error as per your requirement
+	END CATCH
 END;
+
+-- Set the date format to DMY for proper date parsing
+SET DATEFORMAT dmy;
+
+-- Example usage of CapNhatLop procedure
+EXEC CapNhatLop '1234', N'A', '06/10/1998', 123, 1234, 123, 12, '1234';
 GO
-set dateformat dmy
-EXEC CapNhatLop '1234', N'A', '06/10/1998', '123', 1234, 123, 12, '1234';
-GO
+
 -- 5e: Xóa 1 lớp học cho trước nếu lớp học này không có học viên.
 IF OBJECT_ID('XoaLopTrong') IS NOT NULL DROP PROCEDURE XoaLopTrong;
 GO
+
 CREATE PROCEDURE XoaLopTrong
 	@MaLop char(4)
 AS
 BEGIN
-	IF (SELECT COUNT(*) FROM HocVien WHERE MaLop = @MaLop) = 0
-	BEGIN
-		DELETE FROM Lop WHERE MaLop = @MaLop
-	END
+	BEGIN TRY
+		-- Check if the specified MaLop exists in the Lop table
+		IF EXISTS (SELECT 1 FROM Lop WHERE MaLop = @MaLop)
+		BEGIN
+			-- Check if the class has no students
+			IF NOT EXISTS (SELECT 1 FROM HocVien WHERE MaLop = @MaLop)
+			BEGIN
+				DELETE FROM Lop WHERE MaLop = @MaLop;
+			END
+		END
+	END TRY
+	BEGIN CATCH
+		-- Do nothing or handle the error as per your requirement
+	END CATCH
 END;
 GO
+
+-- Example usage of XoaLopTrong procedure
 EXEC XoaLopTrong 'A075';
 GO
 
 -- 5f: Lập danh sách học viên của lớp cho trước
 IF OBJECT_ID('DanhSachHV') IS NOT NULL DROP PROCEDURE DanhSachHV;
 GO
+
 CREATE PROCEDURE DanhSachHV
 	@MaLop char(4)
 AS
 BEGIN
-	SELECT * FROM HocVien WHERE MaLop = @MaLop
+	BEGIN TRY
+		-- Check if the specified MaLop exists in the Lop table
+		IF EXISTS (SELECT 1 FROM Lop WHERE MaLop = @MaLop)
+		BEGIN
+			SELECT * FROM HocVien WHERE MaLop = @MaLop;
+		END
+	END TRY
+	BEGIN CATCH
+		-- Do nothing or handle the error as per your requirement
+	END CATCH
 END;
 GO
+
+-- Example usage of DanhSachHV procedure
 EXEC DanhSachHV 'A075';
 GO
+
 -- 5g: Lập danh sách học viên chưa đóng đủ học phí của một lớp cho trước
 IF OBJECT_ID('DanhSachHVNoHP') IS NOT NULL DROP PROCEDURE DanhSachHVNoHP;
 GO
+
 CREATE PROCEDURE DanhSachHVNoHP
 	@MaLop char(4)
 AS
 BEGIN
-	SELECT MSHV, Ho, Ten 
-	FROM HocVien 
-	WHERE MaLop = @MaLop AND
-			MSHV IN (SELECT MSHV FROM HocPhi WHERE dbo.TongTienHV(MSHV) < dbo.HocPhiLop(NoiDung));
+	BEGIN TRY
+		-- Check if the specified MaLop exists in the Lop table
+		IF EXISTS (SELECT 1 FROM Lop WHERE MaLop = @MaLop)
+		BEGIN
+			SELECT H.MSHV, H.Ho, H.Ten 
+			FROM HocVien H
+			WHERE H.MaLop = @MaLop
+				AND H.MSHV IN (
+					SELECT HP.MSHV
+					FROM HocPhi HP
+					WHERE HP.MSHV = H.MSHV
+					GROUP BY HP.MSHV
+					HAVING SUM(HP.SoTien) < dbo.HocPhiLop(@MaLop)
+				);
+		END
+	END TRY
+	BEGIN CATCH
+		-- Do nothing or handle the error as per your requirement
+	END CATCH
 END;
 GO
-EXEC DanhSachHVNoHP 'W123';
+
+-- Example usage of DanhSachHVNoHP procedure
+EXEC DanhSachHVNoHP 'W125';
 GO
+
 
 -- 6a: Cho mã lớp, tính tổng số học phí đã thu khi biết mã lớp
 IF OBJECT_ID('DoanhThuLop') IS NOT NULL DROP FUNCTION DoanhThuLop;
@@ -408,11 +517,17 @@ CREATE FUNCTION DaDongDuHP(
 RETURNS BIT
 AS
 BEGIN
-	IF dbo.TongTienHV(@MSHV) < dbo.HocPhiLop(LEFT(@MSHV, 4))
+	DECLARE @TongTienHV INT;
+	DECLARE @HocPhiLop INT;
+	SELECT @TongTienHV = SUM(SoTien) FROM HocPhi WHERE MSHV = @MSHV;
+	SELECT @HocPhiLop = HocPhi FROM Lop WHERE MaLop = LEFT(@MSHV, 4);
+
+	IF @TongTienHV >= @HocPhiLop
 	BEGIN
-		RETURN 0;
+		RETURN 1;
 	END
-	RETURN 1;
+
+	RETURN 0;
 END;
 GO
 SELECT dbo.DaDongDuHP('E11403');
@@ -432,5 +547,5 @@ BEGIN
 	RETURN CONCAT(@MaLop, RIGHT( REPLICATE('0', 2)+CAST(@Count AS VARCHAR), 2) );
 END;
 GO
+
 SELECT dbo.SinhMAHV('E114');
-GO
