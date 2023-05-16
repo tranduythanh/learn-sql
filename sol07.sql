@@ -32,7 +32,7 @@ go
 create table Lop
 
 (
-	MALop	 char(4) primary key,
+	MSLop	 char(4) primary key,
 	TenLop	 nvarchar(50) not null,		
 	MSKhoa   char(2) not null ,
 	NienKhoa int
