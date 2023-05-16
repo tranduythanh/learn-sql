@@ -24,48 +24,35 @@ create table Khoa
 (
 	MSKhoa		char(2) primary key,		
 	TenKhoa	varchar(50) not null,
-	TenTat	nvarchar(4) not null
+	TenTat	NVARCHAR(4) not null unique
 )
 
 go
 
 create table Lop
-
 (
 	MSLop	 char(4) primary key,
-	TenLop	 nvarchar(50) not null,		
-	MSKhoa   char(2) not null ,
-	NienKhoa int
+	TenLop	 NVARCHAR(50) not null,		
+	MSKhoa   char(2) not null,
+	NienKhoa int,
+	constraint fk_Lop_Khoa foreign key (MSKhoa) references Khoa (MSKhoa)
 )
 
 go
 
 create table Tinh
-
 (
 	MSTinh	 char(2) primary key,
-	TenTinh	 nvarchar(30) not null
+	TenTinh	 NVARCHAR(30) not null unique
 )
 
 go
 
 create table MonHoc
-
 (
 	MSMH	 char(4) primary key,
-	TenMH	 nvarchar(50) not null,
+	TenMH	 NVARCHAR(50) not null unique,
 	HeSo	 int not null
-)
-
-go
-
-create table BangDiem
-
-(
-	MSSV	 char(7) not null,
-	MSMH	 char(4) not null,
-	LanThi	 int     not null,
-	Diem	 float   not null
 )
 
 go
@@ -73,16 +60,32 @@ go
 create table SinhVien
 (
 	MSSV		char(7) primary key,
-	Ho			nvarchar(30) not null,
-    Ten			nvarchar(30) not null,
-	NgaySinh	datetime not null,
+	Ho			NVARCHAR(30) not null,
+	Ten			NVARCHAR(30) not null,
+	NgaySinh	DATETIME not null,
 	MSTinh		char(2) not null,
-	NgayNhapHoc	datetime not null,
+	NgayNhapHoc	DATETIME not null,
 	MSLop		char(4) not null,
-	Phai        nvarchar(3),
-	DiaChi		nvarchar(50),
-	DienThoai   varchar(16)
+	Phai        NVARCHAR(3) check (Phai = N'Yes' or Phai = N'No'),
+	DiaChi		NVARCHAR(50),
+	DienThoai   varchar(16),
+	constraint fk_SinhVien_Tinh foreign key (MSTinh) references Tinh (MSTinh),
+	constraint fk_SinhVien_Lop foreign key (MSLop) references Lop (MSLop)
 )
+
+go
+
+create table BangDiem
+(
+	MSSV	 char(7) not null,
+	MSMH	 char(4) not null,
+	LanThi	 int     not null,
+	Diem	 float   not null,
+	primary key (MSSV, MSMH, LanThi),
+	constraint fk_BangDiem_SinhVien foreign key (MSSV) references SinhVien (MSSV),
+	constraint fk_BangDiem_MonHoc foreign key (MSMH) references MonHoc (MSMH)
+)
+
 
 go
 
@@ -119,33 +122,6 @@ insert into MonHoc values('VB01', N'Truyen so lieu',      3)
 insert into MonHoc values('XA01', N'Vat ly dai cuong',    2)
 select * from MonHoc
 
-insert into BangDiem values('98TH001', 'TA01', 1, 8.5)
-insert into BangDiem values('98TH001', 'TA02', 1, 8)
-insert into BangDiem values('98TH002', 'TA01', 1, 4)
-insert into BangDiem values('98TH002', 'TA01', 2, 5.5)
-insert into BangDiem values('98TH001', 'TB01', 1, 7.5)
-insert into BangDiem values('98TH002', 'TB01', 1, 8)
-insert into BangDiem values('98VT001', 'VA01', 1, 4)
-insert into BangDiem values('98VT001', 'VA01', 2, 5)
-insert into BangDiem values('98VT002', 'VA02', 1, 7.5)
-insert into BangDiem values('99TH001', 'TA01', 1, 4)
-insert into BangDiem values('99TH001', 'TA01', 2, 6)
-insert into BangDiem values('99TH001', 'TB01', 1, 6.5)
-insert into BangDiem values('99TH002', 'TB01', 1, 10)
-insert into BangDiem values('99TH002', 'TB01', 1, 9)
-insert into BangDiem values('99TH003', 'TA02', 1, 7.5)
-insert into BangDiem values('99TH003', 'TB01', 1, 3)
-insert into BangDiem values('99TH003', 'TB01', 2, 6)
-insert into BangDiem values('99TH003', 'TB02', 1, 8)
-insert into BangDiem values('99TH004', 'TB02', 1, 2)
-insert into BangDiem values('99TH004', 'TB02', 2, 4)
-insert into BangDiem values('99TH004', 'TB02', 3, 3)
-insert into BangDiem values('99QT001', 'QA01', 1, 7)
-insert into BangDiem values('99QT001', 'QA02', 1, 6.5)
-insert into BangDiem values('99QT002', 'QA01', 1, 8.5)
-insert into BangDiem values('99QT002', 'QA02', 1, 9)
-select * from BangDiem
-
 set dateformat dmy
 go
 insert into SinhVien values('98TH001', N'Nguyen Van',  N'An',    '06/08/80', '01', '03/09/98', '98TH', 'Yes', '12 Tran Hung Dao, Q.1',   '8234512') 
@@ -161,6 +137,35 @@ insert into SinhVien values('99VT001', N'Le Ngoc',     N'Mai',   '21/06/82', '01
 insert into SinhVien values('99QT001', N'Nguyen Thi',  N'Oanh',  '19/08/73', '04', '05/10/99', '99QT', 'No',  '12 Hung Vuong, Q.5',      '0901656324')
 insert into SinhVien values('99QT002', N'Le My',       N'Thanh', '20/05/76', '04', '05/10/99', '99QT', 'No',  '12 Pham Ngoc Thach, Q.3',  NULL)
 select * from SinhVien
+
+go
+
+insert into BangDiem values('98TH001', 'TA01', 1, 8.5)
+insert into BangDiem values('98TH001', 'TA02', 1, 8)
+insert into BangDiem values('98TH002', 'TA01', 1, 4)
+insert into BangDiem values('98TH002', 'TA01', 2, 5.5)
+insert into BangDiem values('98TH001', 'TB01', 1, 7.5)
+insert into BangDiem values('98TH002', 'TB01', 1, 8)
+insert into BangDiem values('98VT001', 'VA01', 1, 4)
+insert into BangDiem values('98VT001', 'VA01', 2, 5)
+insert into BangDiem values('98VT002', 'VA02', 1, 7.5)
+insert into BangDiem values('99TH001', 'TA01', 1, 4)
+insert into BangDiem values('99TH001', 'TA01', 2, 6)
+insert into BangDiem values('99TH001', 'TB01', 1, 6.5)
+insert into BangDiem values('99TH002', 'TB01', 1, 10)
+insert into BangDiem values('99TH002', 'TB02', 1, 9)
+insert into BangDiem values('99TH003', 'TA02', 1, 7.5)
+insert into BangDiem values('99TH003', 'TB01', 1, 3)
+insert into BangDiem values('99TH003', 'TB01', 2, 6)
+insert into BangDiem values('99TH003', 'TB02', 1, 8)
+insert into BangDiem values('99TH004', 'TB02', 1, 2)
+insert into BangDiem values('99TH004', 'TB02', 2, 4)
+insert into BangDiem values('99TH004', 'TB02', 3, 3)
+insert into BangDiem values('99QT001', 'QA01', 1, 7)
+insert into BangDiem values('99QT001', 'QA02', 1, 6.5)
+insert into BangDiem values('99QT002', 'QA01', 1, 8.5)
+insert into BangDiem values('99QT002', 'QA02', 1, 9)
+select * from BangDiem
 ----------------------------------------------------------------------
 
 
@@ -391,3 +396,131 @@ SELECT l.NienKhoa, k.MSKhoa, k.TenKhoa, COUNT(sv.MSSV)
 	JOIN Lop AS l ON l.MSLop = sv.MSLop
 	JOIN Khoa AS k ON l.MSKhoa = k.MSKhoa
 	GROUP BY l.NienKhoa, k.MSKhoa, k.TenKhoa;
+
+-- Nhập vào MSSV, in ra bảng điểm của sinh viên đó gồm các cột sau: MSMH, TenMH, Hệ số, Điểm.
+-- Điểm in ra lấy điểm cao nhất trong các lần thi
+IF OBJECT_ID('sp_LayDiemCaoNhatCuaSV') IS NOT NULL DROP PROCEDURE sp_LayDiemCaoNhatCuaSV;
+GO
+CREATE PROCEDURE sp_LayDiemCaoNhatCuaSV
+	@MSSV CHAR(7)
+AS
+BEGIN
+	SELECT
+		bd.MSMH,
+		mh.TenMH,
+		mh.HeSo,
+		MAX(bd.Diem) AS Diem
+	FROM
+		BangDiem AS bd
+	INNER JOIN MonHoc AS mh ON bd.MSMH = mh.MSMH
+	WHERE
+		bd.MSSV = @MSSV
+	GROUP BY
+		bd.MSMH,
+		mh.TenMH,
+		mh.HeSo
+	ORDER BY
+		bd.MSMH
+END
+GO
+EXEC sp_LayDiemCaoNhatCuaSV '99TH002';
+
+-- Nhập vào MSLop, in ra bảng tổng kết của lớp đó, gồm các cột sau:
+-- MSSV, Họ, Tên, ĐTB, Xếp loại
+IF OBJECT_ID('sp_TongKetLop') IS NOT NULL DROP PROCEDURE sp_TongKetLop;
+GO
+CREATE PROCEDURE sp_TongKetLop
+	@MSLop CHAR(4)
+AS
+BEGIN
+	WITH StudentAverage AS (
+		SELECT
+			sv.MSSV,
+			sv.Ho,
+			sv.Ten,
+			AVG(bd.Diem * mh.HeSo) / SUM(mh.HeSo) AS DTB
+		FROM
+			SinhVien AS sv
+		LEFT JOIN BangDiem AS bd ON sv.MSSV = bd.MSSV
+		LEFT JOIN MonHoc AS mh ON bd.MSMH = mh.MSMH
+		WHERE
+			sv.MSLop = @MSLop
+		GROUP BY
+			sv.MSSV,
+			sv.Ho,
+			sv.Ten
+	)
+	SELECT
+		MSSV,
+		Ho,
+		Ten,
+		DTB,
+		CASE
+			WHEN DTB >= 5.5 THEN N'Đạt'
+			ELSE N'Không Đạt'
+		END AS XepLoai
+	FROM
+		StudentAverage
+	ORDER BY
+		MSSV
+END
+GO
+EXEC sp_TongKetLop '99TH';
+GO
+
+-- Cập nhật dữ liệu:
+-- Tạo bảng SinhVienTinh, trong đó có chứa hồ sơ của sinh viên, lấy từ bảng SinhVien, 
+-- có quê quán không phải ở TP.HCM, Thêm thuộc tính HBong cho bảng SinhVienTinh
+CREATE TABLE SinhVienTinh
+(
+    MSSV        CHAR(7) PRIMARY KEY,
+    Ho          NVARCHAR(30) NOT NULL,
+    Ten         NVARCHAR(30) NOT NULL,
+    NgaySinh    DATETIME NOT NULL,
+    MSTinh      CHAR(2) NOT NULL,
+    NgayNhapHoc DATETIME NOT NULL,
+    MSLop       CHAR(4) NOT NULL,
+    Phai        NVARCHAR(3),
+    DiaChi      NVARCHAR(50),
+    DienThoai   VARCHAR(16),
+    HBong       INT,
+    CONSTRAINT fk_SinhVienTinh_Tinh FOREIGN KEY (MSTinh) REFERENCES Tinh (MSTinh),
+    CONSTRAINT fk_SinhVienTinh_Lop FOREIGN KEY (MSLop) REFERENCES Lop (MSLop)
+);
+GO
+
+INSERT INTO SinhVienTinh (MSSV, Ho, Ten, NgaySinh, MSTinh, NgayNhapHoc, MSLop, Phai, DiaChi, DienThoai)
+SELECT
+    sv.MSSV,
+    sv.Ho,
+    sv.Ten,
+    sv.NgaySinh,
+    sv.MSTinh,
+    sv.NgayNhapHoc,
+    sv.MSLop,
+    sv.Phai,
+    sv.DiaChi,
+    sv.DienThoai
+FROM
+    SinhVien AS sv
+INNER JOIN Tinh AS t ON sv.MSTinh = t.MSTinh
+WHERE
+    t.TenTinh <> N'TP.HCM';
+
+
+
+-- Cập nhật thuộc tính HBong trong bảng SinhVienTinh thành 1000000 cho tất cả sinh viên.
+UPDATE SinhVienTinh SET HBong = 1000000;
+
+-- Tăng học bổng lên 10% cho các sinh viên nữ.
+UPDATE SinhVienTinh SET HBong = HBong * 1.1 WHERE Phai = N'No';
+SELECT * FROM SinhVienTinh;
+
+-- Xóa tất cả các sinh viên có quên quán ở Long An trong bảng SinhVienTinh
+DELETE FROM SinhVienTinh
+WHERE MSTinh IN (
+    SELECT MSTinh
+    FROM Tinh
+    WHERE TenTinh = N'Long An'
+);
+SELECT * FROM SinhVienTinh;
