@@ -35,7 +35,7 @@ create table CongNhan
 	MACN	 char(5) primary key,		
     Ho       nvarchar(30) not null,
     Ten      nvarchar(30) not null,
-    Phai     nvarchar(3) not null,
+    Phai     nvarchar(3) not null check (Phai = N'Nam' or Phai = N'Nữ'),
     NgaySinh datetime,
 	MaTSX    char(4) NOT NULL references ToSanXuat(MaTSX)
 )
@@ -172,7 +172,8 @@ GROUP BY
 	tsx.MaTSX,
 	tsx.TenTSX;
 
--- 6 WITH tmp AS (
+-- 6 
+WITH tmp AS (
 	SELECT
 		cn.Ho,
 		cn.Ten,
@@ -284,120 +285,129 @@ INSERT INTO CongNhan VALUES('CN006', N'Lê Thị', N'Lan', N'Nữ', '06/06/1999'
 
 
 -- A.a
-IF OBJECT_ID('sp_TotalCongNhanByToSanXuat', 'P') IS NOT NULL
-  DROP PROCEDURE sp_TotalCongNhanByToSanXuat;
-
-CREATE PROCEDURE sp_TotalCongNhanByToSanXuat
-	@MaTSX char(4)
+IF OBJECT_ID('fn_TotalCongNhanByToSanXuat') IS NOT NULL DROP FUNCTION fn_TotalCongNhanByToSanXuat;
+GO
+CREATE FUNCTION dbo.fn_TotalCongNhanByToSanXuat
+	(@MaTSX char(4))
+RETURNS int
 AS
 BEGIN
-	SELECT COUNT(*) AS Total
+	DECLARE @Total int;
+	SELECT @Total = COUNT(*) 
 	FROM CongNhan
-	WHERE MaTSX = @MaTSX
+	WHERE MaTSX = @MaTSX;
+	RETURN @Total;
 END;
-
-EXEC sp_TotalCongNhanByToSanXuat 'TS01';
+GO
+SELECT dbo.fn_TotalCongNhanByToSanXuat('TS01');
 
 
 -- A.b
-IF OBJECT_ID('tp_TotalSoluon', 'P') IS NOT NULL
-DROP PROCEDURE tp_TotalSoLuong;
-
-CREATE PROCEDURE tp_TotalSoLuong
-	@MaSP  char(5),
-	@Thang int,
-	@Nam   int
+IF OBJECT_ID('fn_TotalSoLuong') IS NOT NULL DROP FUNCTION fn_TotalSoLuong;
+GO
+CREATE FUNCTION dbo.fn_TotalSoLuong
+	(@MaSP  char(5),
+	 @Thang int,
+	 @Nam   int)
+RETURNS int
 AS
 BEGIN
-	SELECT SUM(SoLuong)
+	DECLARE @Total int;
+	SELECT @Total = SUM(SoLuong)
 	FROM ThanhPham
-	WHERE MaSP = @MaSP AND MONTH(Ngay) = @Thang AND YEAR(Ngay) = @Nam
+	WHERE MaSP = @MaSP AND MONTH(Ngay) = @Thang AND YEAR(Ngay) = @Nam;
+	RETURN @Total;
 END;
-
-EXEC tp_TotalSoLuong 'SP001', 1, 2007;
+GO
+SELECT dbo.fn_TotalSoLuong('SP001', 1, 2007);
 
 -- A.c 
-IF OBJECT_ID('TienLuongThang') IS NOT NULL
-DROP PROCEDURE TienLuongThang;
-
-CREATE PROCEDURE TienLuongThang
-	@MACN  char(5),
-	@Thang int,
-	@Nam   int
+IF OBJECT_ID('fn_TienLuongThang') IS NOT NULL DROP FUNCTION fn_TienLuongThang;
+GO
+CREATE FUNCTION dbo.fn_TienLuongThang
+	(@MACN  char(5),
+	 @Thang int,
+	 @Nam   int)
+RETURNS int
 AS
 BEGIN
-	SELECT SUM(tp.SoLuong*sp.TienCong)
+	DECLARE @Total int;
+	SELECT @Total = SUM(tp.SoLuong*sp.TienCong)
 	FROM ThanhPham AS tp 
 	JOIN SanPham AS sp ON tp.MaSP = sp.MASP 
-	WHERE YEAR(tp.Ngay)=@Nam AND MONTH(tp.Ngay)=@Thang AND tp.MACN=@MACN
+	WHERE YEAR(tp.Ngay)=@Nam AND MONTH(tp.Ngay)=@Thang AND tp.MACN=@MACN;
+	RETURN @Total;
 END;
-
-EXEC TienLuongThang 'CN001', 2, 2007;
+GO
+SELECT dbo.fn_TienLuongThang('CN001', 2, 2007);
 
 -- A.d 
-IF OBJECT_ID('TongThuNhapTo') IS NOT NULL
-DROP PROCEDURE TongThuNhapTo;
-
-CREATE PROCEDURE TongThuNhapTo
-	@MaTSX  char(5),
-	@Nam   int
+IF OBJECT_ID('fn_TongThuNhapTo') IS NOT NULL DROP FUNCTION fn_TongThuNhapTo;
+GO
+CREATE FUNCTION dbo.fn_TongThuNhapTo
+	(@MaTSX  char(5),
+	 @Nam   int)
+RETURNS int
 AS
 BEGIN
-	SELECT SUM(tp.SoLuong*sp.TienCong)
+	DECLARE @Total int;
+	SELECT @Total = SUM(tp.SoLuong*sp.TienCong)
 	FROM ThanhPham AS tp 
 	JOIN SanPham AS sp ON tp.MaSP = sp.MASP 
 	JOIN CongNhan AS cn ON tp.MACN = cn.MACN
-	WHERE YEAR(tp.Ngay)=@Nam AND cn.MaTSX = @MaTSX
+	WHERE YEAR(tp.Ngay)=@Nam AND cn.MaTSX = @MaTSX;
+	RETURN @Total;
 END;
-
-EXEC TongThuNhapTo 'TS02', 2007;
+GO
+SELECT dbo.fn_TongThuNhapTo('TS02', 2007);
 
 -- A.e 
-IF OBJECT_ID('TongSoLuongSX') IS NOT NULL
-DROP PROCEDURE TongSoLuongSX;
-
-CREATE PROCEDURE TongSoLuongSX
-	@MaSP  char(5),
-	@From  datetime,
-	@To    datetime
-AS
-BEGIN
-	SELECT * 
-	FROM ThanhPham 
-	WHERE MaSP=@MaSP AND Ngay >= @From AND Ngay <= @To
-END;
-
-EXEC TongSoLuongSX 'SP001', '2007/01/01', '2007/02/19';
-
-;
-
--- B.a
-IF OBJECT_ID('PrintCongNhan') IS NOT NULL DROP FUNCTION PrintCongNhan;
-CREATE FUNCTION dbo.PrintCongNhan(
-	@MaTSX char(4)
-)
+IF OBJECT_ID('fn_TongSoLuongSX') IS NOT NULL DROP FUNCTION fn_TongSoLuongSX;
+GO
+CREATE FUNCTION dbo.fn_TongSoLuongSX
+	(@MaSP  char(5),
+	 @From  datetime,
+	 @To    datetime)
 RETURNS TABLE
 AS
 RETURN (
-	SELECT * FROM CongNhan WHERE MaTSX = @MaTSX
+	SELECT * 
+	FROM ThanhPham 
+	WHERE MaSP=@MaSP AND Ngay >= @From AND Ngay <= @To
 );
+GO
+SET dateformat dmy;
+SELECT * FROM dbo.fn_TongSoLuongSX('SP001', '01/01/2007', '19/02/2007');
 
-SELECT * FROM dbo.PrintCongNhan('TS01');
+
+
+
+-- B.a
+IF OBJECT_ID('PrintCongNhan') IS NOT NULL DROP PROCEDURE PrintCongNhan;
+GO
+CREATE PROCEDURE dbo.PrintCongNhan
+	@MaTSX char(4)
+AS
+BEGIN
+	SELECT * FROM CongNhan WHERE MaTSX = @MaTSX;
+END;
+GO
+EXEC dbo.PrintCongNhan 'TS01';
 
 -- B.b 
-IF OBJECT_ID('ChamCong') IS NOT NULL DROP FUNCTION ChamCong;
-CREATE FUNCTION ChamCong(
+IF OBJECT_ID('ChamCong') IS NOT NULL DROP PROCEDURE ChamCong;
+GO
+CREATE PROCEDURE dbo.ChamCong
 	@MACN  char(5),
 	@Thang int,
 	@Nam   int
-)
-RETURNS TABLE
-AS RETURN (
-SELECT sp.TenSP, sp.DVT, tp.SoLuong,
-	tp.SoLuong*sp.TienCong AS ThanhTien 
-	FROM ThanhPham AS tp 
-	JOIN SanPham AS sp ON tp.MaSP = sp.MASP 
-	WHERE tp.MACN = @MACN AND MONTH(Ngay) = @Thang AND YEAR(Ngay) = @Nam
-);
-
-SELECT * FROM dbo.ChamCong('CN001', 2, 2007);
+AS
+BEGIN
+	SELECT sp.TenSP, sp.DVT, tp.SoLuong,
+		tp.SoLuong*sp.TienCong AS ThanhTien 
+		FROM ThanhPham AS tp 
+		JOIN SanPham AS sp ON tp.MaSP = sp.MASP 
+		WHERE tp.MACN = @MACN AND MONTH(Ngay) = @Thang AND YEAR(Ngay) = @Nam;
+END;
+GO
+EXEC dbo.ChamCong 'CN001', 2, 2007;
