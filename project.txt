@@ -1,0 +1,55 @@
+\chapter{Yêu cầu của bài toán}
+\section{Mục tiêu}
+\begin{itemize}
+    \item Quản lí bán hàng của công ti phân phối sản phẩm Unilever.
+    \item Quản lí việc nhập, xuất và tồn kho.
+\end{itemize}
+
+\section{Mô tả nội dung}
+Công ti ABC là một trong các công ti chuyên phân phối hàng tiêu dùng trực thuộc nhà phân phối Unilever Việt Nam. Khách hàng của công ti là các đại lí được phân chia theo các vùng khác nhau do Unilever chỉ định. Do đó, lượng khách hàng ít biến động. Hiện tại, công ti có 10 đội phụ trách nhiều nhóm hàng khác nhau. Mỗi đội có một đội trưởng, một nhân viên giao hàng và các nhân viên tiếp thị. Các nhân viên tiếp thị chỉ thuộc một đội. Nhiệm vụ của nhân viên tiếp thị là tiếp thị sản phẩm, nhận đặt hàng từ khách hàng, giao hàng và thu tiền khách hàng.
+
+Hiện nay, công ti đang quản lí khoảng 280 sản phẩm và được phân chia thành 4 nhóm hàng: bột, chăm sóc thân thể, chăm sóc sắc đẹp và thực phẩm. Mỗi hàng hóa có tên hàng hóa, thường được gọi tên là tên sản phẩm + trọng lượng sản phẩm. Ví dụ, dầu gội đầu Bồ kết Sunsilk 500ml. Mỗi hàng hóa có thể có nhiều quy cách đóng gói. Tuy nhiên, tối đa có 4 cấp tính cho 1 hàng hóa. Ví dụ, 1 thùng xà bông gồm 12 bịch xà bông, mỗi bịch được gói có trọng lượng 0.2kg. Mỗi hàng hóa đều có ghi nhân quy cách quy đổi quy cách đóng gói.
+
+Hàng hóa của công ti nhận được từ một trong 2 nguồn: do công ti đặt hàng Unilever hay do Unilever ấn định hàng hóa. Mỗi hàng hóa đều được nhập vào kho của công ti và được xuất kho theo lệnh của giám đốc công ti. Mỗi lô nhập hàng về đều có hóa đơn bán hàng của Unilever và có thể có nhiều mặt hàng khác nhau. Sau khi kiểm hàng nay đủ và không bị hư hỏng, thủ kho sẽ lập một phiếu nhập kho với số lượng hàng hóa thực sự. Công ti chỉ được quyền trả về Unilever những hàng hóa nào bị hư hỏng do vận chuyển hay đã quá hạn sử dụng. Công ti phải thanh toán cho Unilever chậm nhất là 10 ngày kể từ ngày nhận hàng theo phương thức FIFO. Mọi thanh toán quá hạn của 1 hóa đơn sẽ bị phạt bằng cách trừ chiết khấu tiền mặt 2.5\%.
+
+Khi có nhu cầu, các đội hay nhân viên tiếp thị sẽ yêu cầu kho xuất hàng. Thủ kho sẽ lập một phiếu tạm (thay cho phiếu xuất kho vì tần suất biến động lớn) cho nhân viên và nhân viên giao hàng sẽ kiểm lại đúng số lượng. Trong ngày, thủ kho lập các phiếu xuất dựa trên các phiếu xuất tạm. Cuối ngày, nhân viên kho sẽ kiểm lại hàng hóa trên xe của đội và đối chiếu với hóa đơn bán hàng của tiếp thị trong ngày để kiểm kê lạ số lượng hàng hóa. Khi cần, đội có thể trả lạ hàng hóa cho kho. Hàng hóa khi giao cho đội được tính trên đơn vị tính lớn nhất (hàng công ti: kho chẵn) và hàng hóa mà đội trả về lại cho kho có thể là hàng lẻ (hàng nhân viên: kho lẻ). Hàng hóa xuất kho theo đơn giá được chỉ định, và theo ngày nhập của lô hàng. Hàng hóa có thể nhập kho và xuất kho theo quy cách đóng gói khác nhau.
+
+Mỗi đội quản lí tất cả các mặt mặt hàng cùng một nhóm hàng của một nhà sản xuất. Khách hàng có thể mua hàng hóa từ các đội khác nhau. Nhân viên tiếp thị sẽ nộp tiền thu được cho kế toán công ti. Kế toán công ti sẽ kiểm tra lại theo hóa đơn bán hàng mà tiếp thị nộp lại. Đơn vị thanh toán trên hóa đơn duy nhất là VNĐ. Có thể xảy ra trường hợp nhân viên tiếp thị đã lập hóa đơn bán hàng cho khách hàng nhưng chưa giao hàng (hàng giao chậm).
+Có 4 nhóm người sử dụng chương trình ứng dụng sau:
+\begin{enumerate}
+    \item Kế toán vị trí: quản lí bán hàng, cập nhật hóa đơn bán hàng.
+    \item Kế toán tổng hợp: thực hiện báo cáo, thống kê, không thay đổi nhập liệu.
+    \item Nhân viên kho: quản lí xuất nhập hàng hóa.
+    \item Người quản lí: theo dõi chung tất các các hoạt động của công ti.
+\end{enumerate}
+
+\section{Yêu cầu chức năng của chương trình ứng dụng}
+\subsection{Lưu trữ}
+\begin{itemize}
+    \item Danh mục các đội tiếp thị.
+    \item Danh mục hàng hóa được phân loại theo quy định như trên.
+    \item Phiếu nhập, xuất hàng.
+    \item Hóa đơn bán hàng.
+\end{itemize}
+
+\subsection{Xử lí}
+\begin{itemize}
+    \item Ghi sổ sách kế toán để báo cáo.
+    \item Tính doanh thu bán hàng.
+    \item Tính số lượng tồn kho cũng như hàng đã giao trên xe của đội.
+\end{itemize}
+
+\subsection{Tra cứu và theo dõi}
+\begin{itemize}
+    \item Hàng hóa xuất, nhập cho các đội.
+    \item Hóa đơn bán hàng.
+\end{itemize}
+
+\subsection{Kết xuất}
+Có 4 loại báo cáo thống kê theo mẫu quy định:
+\begin{itemize}
+    \item Báo cáo ngày: đơn vị tính theo đóng gói nhỏ nhất.
+    \item Báo cáo tuần.
+    \item Báo cáo chu kì 4 tuần: đơn vị tính 12 lô.
+    \item báo cáo năm.
+\end{itemize}
