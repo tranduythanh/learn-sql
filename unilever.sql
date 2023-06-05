@@ -270,3 +270,60 @@ CREATE TABLE STATISTIC (
     FOREIGN KEY (user_id) REFERENCES "USER"(id)
 );
 SELECT * FROM STATISTIC;
+
+
+
+GO 
+
+-- Trigger for RECEIPT and UNILEVER_INVOICE constraint
+CREATE TRIGGER check_receipt_quantity
+BEFORE INSERT ON RECEIPT
+FOR EACH ROW
+BEGIN
+    DECLARE total_received INT;
+    SELECT SUM(quantity) INTO total_received
+    FROM RECEIPT
+    WHERE unilever_invoice_id = NEW.unilever_invoice_id;
+
+    IF total_received + NEW.quantity > (SELECT quantity FROM UNILEVER_INVOICE WHERE id = NEW.unilever_invoice_id) THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Total receipt quantity cannot exceed the invoice quantity';
+    END IF;
+END;
+
+GO 
+
+-- Trigger for RETURN and RECEIPT constraint
+CREATE TRIGGER check_return_quantity
+BEFORE INSERT ON RETURN
+FOR EACH ROW
+BEGIN
+    DECLARE total_returned INT;
+    SELECT SUM(quantity) INTO total_returned
+    FROM RETURN
+    WHERE receipt_id = NEW.receipt_id;
+
+    IF total_returned + NEW.quantity > (SELECT quantity FROM RECEIPT WHERE id = NEW.receipt_id) THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Total return quantity cannot exceed the receipt quantity';
+    END IF;
+END;
+
+DELIMITER ;
+
+-- Trigger for ORDER_ITEM and ORDER constraint
+DELIMITER //
+CREATE TRIGGER check_order_item_quantity
+BEFORE INSERT ON ORDER_ITEM
+FOR EACH ROW
+BEGIN
+    DECLARE available_quantity INT;
+    SELECT SUM(quantity) INTO available_quantity
+    FROM INVENTORY_IN_OUT
+    WHERE product_id = NEW.product_id;
+
+    IF available_quantity - NEW.quantity < 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Order item quantity cannot exceed the available product quantity';
+    END IF;
+END;
