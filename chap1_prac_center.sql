@@ -49,8 +49,7 @@ CREATE TABLE LopHoc (
     MaKH INT NOT NULL,
     MaGV INT,
     SiSo INT NOT NULL DEFAULT 0,
-    LopTRG BIT NOT NULL,
-    
+    LopTRG BIT NOT NULL
 );
 
 GO
