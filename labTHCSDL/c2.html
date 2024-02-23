@@ -1,0 +1,798 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0052)http://informatics.indiana.edu/rocha/i101/lab10.html -->
+<HTML xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40"><HEAD><TITLE>Th&#7921;c hành C&#417; S&#7903; D&#7919; Li&#7879;u - Lab 2</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252"><LINK 
+title=style href="c1_files/cybercorner_style_nomenu.css" type=text/css 
+rel=stylesheet>
+<META content="Luis Mateus Rocha, Santiago Schnell" name=author>
+<META http-equiv=copyright content="Luis Mateus Rocha, Santiago Schnell">
+<META http-equiv=reply-to content=rocha@lanl.gov>
+<META http-equiv=resource-type content=document>
+<META http-equiv=decription 
+content="Course Materials for I101 Introduction to Informatics">
+<META http-equiv=keywords 
+content="Luis Rocha, Santiago Schnell, Informatics, Information, Knowledge, technology.">
+<META url=http://informatics.indiana.edu/rocha/I101/lab10.html>
+<META content="MSHTML 6.00.3790.0" name=GENERATOR>
+<link rel="File-List" href="c2_files/filelist.xml">
+<!--[if !mso]>
+<style>
+v\:*         { behavior: url(#default#VML) }
+o\:*         { behavior: url(#default#VML) }
+.shape       { behavior: url(#default#VML) }
+</style>
+<![endif]--><!--[if gte mso 9]>
+<xml><o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]-->
+</HEAD>
+<BODY>
+<DIV id=content>
+<H1 class=title><u>Lab2</u>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;các 
+câu l&#7879;nh truy v&#7845;n &#273;&#417;n gi&#7843;n </H1>
+<ul type="square">
+	<li>
+	<p style="line-height: 150%"><font color="#50769C"><b><i>T&#7845;t c&#7843; nh&#7919;ng ví d&#7909; 
+	trong các bài lab th&#7921;c hi&#7879;n trên c&#417; s&#7903; d&#7919; li&#7879;u <u>QuanLyChamCong</u> &#7903; bài 
+	lab1</i></b></font></li>
+</ul>
+
+<p style="line-height: 150%"><font color="#50769C"><b><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</i></b></font><span style="font-size: 12.0pt; font-family: Times New Roman"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_s1026" type="#_x0000_t75" style='width:534pt;
+ height:308.25pt'>
+ <v:imagedata src="c2_files/image001.png" o:title="" croptop="15292f"
+  cropbottom="10923f" cropleft="6814f" cropright=".25"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=712 height=411
+src="c2_files/image002.jpg" v:shapes="_x0000_s1026"><![endif]></span></p>
+<p>&nbsp;</p>
+
+<H1 class=heading1><EM>1. nhóm các l&#7879;nh l&#7921;a ch&#7885;n</EM></H1>
+<p>&nbsp;</p>
+<table border="1" width="85%" id="table1">
+	<tr>
+		<td width="170"><font size="2">Select Statement</font></td>
+		<td><b><font size="2">SELECT</font></b><font size="2"> columnname <b>FROM</b> tablename</font></td>
+	</tr>
+	<tr>
+		<td width="170"><font size="2">Distinct</font></td>
+		<td><b><font size="2">SELECT DISTINCT</font></b><font size="2"> columnname <b>FROM</b> tablename</font></td>
+	</tr>
+	<tr>
+		<td width="170"><font size="2">Where</font></td>
+		<td><b><font size="2">SELECT</font></b><font size="2"> columnname <b>FROM</b> tablename&nbsp;<b>WHERE</b> condition</font></td>
+	</tr>
+	<tr>
+		<td width="170"><font size="2">And/Or</font></td>
+		<td><b><font size="2">SELECT</font></b><font size="2"> columnname <b>FROM</b> tablename&nbsp;<b>WHERE</b> condition&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [<b>AND/OR</b> condition]</font></td>
+	</tr>
+	<tr>
+		<td width="170"><font size="2">In</font></td>
+		<td><b><font size="2">SELECT</font></b><font size="2"> columnname <b>FROM</b> tablename&nbsp;<b>WHERE</b> columnname <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IN</b> (value1, value2...)</font></td>
+	</tr>
+	<tr>
+		<td width="170"><font size="2">Between</font></td>
+		<td><b><font size="2">SELECT</font></b><font size="2"> columnname <b>FROM</b> tablename&nbsp;<b>WHERE</b> columnname <b>&nbsp;&nbsp; BETWEEN</b> value1 <b>AND</b> value2</font></td>
+	</tr>
+	<tr>
+		<td width="170"><font size="2">Like</font></td>
+		<td><b><font size="2">SELECT</font></b><font size="2"> columnname <b>FROM</b> tablename&nbsp;<b>WHERE</b> columnname <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LIKE</b> {pattern}</font></td>
+	</tr>
+	<tr>
+		<td width="170"><font size="2">Order By</font></td>
+		<td><b><font size="2">SELECT</font></b><font size="2"> columnname <b>FROM</b> tablename&nbsp;[<b>WHERE</b> 
+		condition]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>ORDER BY</b> columnname [<b>ASC/DESC</b>]</font></td>
+	</tr>
+	<tr>
+		<td width="170"><font size="2">Count</font></td>
+		<td><b><font size="2">SELECT COUNT</font></b><font size="2">(columnname) <b>FROM</b> 
+		tablename <b>WHERE</b> condition</font></td>
+	</tr>
+	<tr>
+		<td width="170"><font size="2">Group By</font></td>
+		<td><b><font size="2">SELECT</font></b><font size="2"> columnname1, function <b>FROM</b> tablename&nbsp;<b>WHERE</b> condition&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<b>GROUP BY</b> columnname1
+		</font>
+		</td>
+	</tr>
+	<tr>
+		<td width="170"><font size="2">Having</font></td>
+		<td><b><font size="2">SELECT</font></b><font size="2"> columnname1, function <b>FROM</b> tablename&nbsp;<b>WHERE</b> 
+		condition 
+		<b>GROUP BY</b> columnname1&nbsp;<b>HAVING</b>
+		</font>
+		<font face="Verdana, Arial, Helvetica, sans-serif" size="2">(arithematic 
+		function condition)</font></td>
+	</tr>
+</table>
+<p><font color="#FF0000"><b>1. Truy v&#7845;n select .. from .. where &#273;&#417;n gi&#7843;n</b></font></p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909; 1: Xu&#7845;t thông tin h&#7885;, tên, &#273;&#7883;a ch&#7881; và s&#7889; 
+&#273;i&#7879;n tho&#7841;i t&#7845;t c&#7843; các giáo viên.</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select HoGV, TenGV, DiaChi, 
+SoDT</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from GiaoVien</b></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909; 2: Xu&#7845;t t&#7845;t c&#7843; các thông tin c&#7911;a t&#7845;t c&#7843; các giáo viên.</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select MaGV, HoGV, TenGV, 
+DiaChi, SoDT</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from GiaoVien</b></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ho&#7863;c có th&#7875; dùng kí t&#7921; * &#273;&#7875; l&#7845;y 
+t&#7845;t cà các c&#7897;t.</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select *</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from GiaoVien</b></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909; 3: Xu&#7845;t thông tin nh&#7919;ng môn h&#7885;c mà t&#7893;ng s&#7889; 
+sinh viên &#273;&#259;ng kí 80 tr&#7903; lên.</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select MaMH, TenMH</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from MonHoc</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where TongSoDK &gt;=80</b></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909; 4: Xu&#7845;t thông tin MaGV và thông tin nh&#7919;ng môn 
+h&#7885;c và nh&#7919;ng bu&#7893;i h&#7885;c mà h&#7885; tham gia gi&#7843;ng d&#7841;y</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select HoGV, TenGV, MaMH, 
+TenMH, Buoi, Ngay</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from GiaoVien, MonHoc, 
+BangChamCong</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where GiaoVien.MaGV = 
+BangChamCong.MaGV and BangChamCong.MaMH = MonHoc.MaMH</b></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vì có s&#7921; nh&#7853;p nh&#7857;ng không rõ ràng 
+gi&#7919;a MaGV &#7903; b&#7843;ng GiaoVien và b&#7843;ng BangChamCong, do &#273;ó ph&#7843;i k&#7871;t h&#7907;p c&#7843; tên b&#7843;ng 
+tr&#432;&#7899;c MaGV.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#272;&#7875; ng&#7855;n g&#7885;n, ta có th&#7875; &#273;&#7863;t tên rút 
+g&#7885;n cho b&#7843;ng nh&#432; sau:</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select HoGV, TenGV, MaMH, 
+TenMH, Buoi, Ngay</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from GiaoVien gv, MonHoc mh, 
+BangChamCong bcc</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where gv.MaGV = bcc.MaGV and 
+bcc.MaMH = mh.MaMH</b></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909; 5: Xu&#7845;t t&#7845;t thông tin nh&#7919;ng môn h&#7885;c mà 
+t&#7893;ng s&#7889; sinh viên &#273;&#259;ng kí trong kho&#7843;ng t&#7915; 50 &#273;&#7871;n 100.</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select MaMH, TenMH</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from MonHoc</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where TongSoDK between 50 and 
+100</b></p>
+<p>&nbsp;</p>
+<p><b><font color="#FF0000">2. L&#7879;nh like</font></b></p>
+<p>&nbsp;&nbsp;&nbsp; <b><i><font color="#5E8AB6">like</font></i></b> dùng &#273;&#7875; so 
+kh&#7899;p m&#7897;t chu&#7895;i theo &#273;&#7883;nh d&#7841;ng, &#273;&#7875; &#273;&#7883;nh d&#7841;ng, ta dùng các kí t&#7921; &#273;&#7841;i di&#7879;n <b>
+<font color="#5E8AB6">%</font></b>, <b><font color="#5E8AB6">shift -</font></b>.
+<b><font color="#5E8AB6">%</font></b> &#273;&#7841;i di&#7879;n cho m&#7897;t chu&#7895;i các kí t&#7921;, <b>
+<font color="#5E8AB6">shift -</font></b> &#273;&#7841;i di&#7879;n cho m&#7897;t kí t&#7921;.</p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909;: xu&#7845;t MaGV c&#7911;a t&#7845;t c&#7843; các giáo viên có h&#7885; Nguyen</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select MaGV</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from GiaoVien</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where HoGV like 'Nguyen%'</b></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909;: xu&#7845;t MaGV c&#7911;a các giáo viên trong chu&#7895;i &#273;&#7883;a ch&#7881; có 
+Da Lat</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select MaGV</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from GiaoVien</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where DiaChi like '%Da Lat%'</b></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909;: xu&#7845;t MaGV c&#7911;a các giáo viên mà tên c&#7911;a h&#7885; b&#7855;t &#273;&#7847;u 
+b&#7857;ng T và ch&#7881; có 3 kí t&#7921;</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select MaGV</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from GiaoVien</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where tenGV like 'T__'</b></p>
+<p>&nbsp;</p>
+<p><b><font color="#FF0000">3. L&#7879;nh order by</font></b></p>
+<p><font color="#50769C"><b>&nbsp;&nbsp;&nbsp; order by</b></font>: &#273;&#7875; s&#7855;p x&#7871;p 
+d&#7919; li&#7879;u,<b> <font color="#5E8AB6">ASC</font></b>: t&#259;ng<b>, <font color="#5E8AB6">
+DESC</font></b>: gi&#7843;m. N&#7871;u không có t&#7915; khóa <b><font color="#5E8AB6">ASC</font></b> 
+hay<b> <font color="#5E8AB6">DESC</font> </b>thì m&#7863;c &#273;&#7883;nh là<b>
+<font color="#5E8AB6">ASC</font></b>.</p>
+<p><b>&nbsp;&nbsp; </b></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Ví d&#7909;: xu&#7845;t thông tin giáo viên và s&#7855;p x&#7871;p t&#259;ng theo 
+tên</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select HoGV, TenGV, DiaChi, 
+SoDT</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from GiaoVien</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; order by TenGV --ho&#7863;c TenGV ASC</b></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909;: xu&#7845;t thông tin mon h&#7885;c và s&#7855;p x&#7871;p gi&#7843;m theo 
+TongSoDK</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select MaMH, TenMH</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from MonHoc</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; order by TongSoDK DESC</b></p>
+<p><font color="#FF0000"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chú ý: 
+n&#7871;u c&#7847;n s&#7855;p x&#7871;p theo nhi&#7873;u tr&#432;&#7901;ng d&#7919; li&#7879;u thì k&#7871;t h&#7907;p t&#7915; khóa cho t&#7915;ng tr&#432;&#7901;ng, 
+và &#273;&#7897; &#432;u tiên là t&#7915; trái qua.</b></font></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909;: s&#7855;p x&#7871;p giáo viên gi&#7843;m theo tên, n&#7871;u tên trùng nhau 
+thì s&#7855;p t&#259;ng theo h&#7885;.</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select HoGV, TenGV, DiaChi, 
+SoDT</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from GiaoVien</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; order by TenGV DESC, HoGV ASC</b></p>
+<p>&nbsp;</p>
+<p><font color="#FF0000"><b>4. Các l&#7879;nh khác</b></font></p>
+<p>&nbsp;&nbsp;&nbsp; Dùng <font color="#5E8AB6"><b>distinct</b></font> khi mu&#7889;n 
+lo&#7841;i b&#7887; các b&#7897; trùng nhau.</p>
+<p>&nbsp;&nbsp;&nbsp; Ta có th&#7875; dùng <font color="#50769C"><b>top n</b></font> 
+&#273;&#7875; ch&#7881; &#273;&#7883;nh s&#7889; b&#7897; c&#7847;n l&#7845;y là <b><font color="#50769C">n</font></b></p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909;: </p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select top 3 TongSoDK</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from MonHoc</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; order by TongSoDK Desc</b></p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909;: </p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select distinct(TenGV)</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from GiaoVien</b></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; Các ví d&#7909; v&#7873; l&#7879;nh <font color="#50769C"><b>Group by, Group 
+by ... Having</b></font> s&#7869; &#7903; ph&#7847;n sau cùng v&#7899;i nhóm l&#7879;nh th&#7921;c hi&#7879;n tính toán.</p>
+<p>&nbsp;</p>
+<H1 class=heading1><EM>2. nhóm các l&#7879;nh th&#7921;c hi&#7879;n tính toán</EM></H1>
+<p>&nbsp;</p>
+<table border="1" width="85%" id="table2">
+	<tr>
+		<td width="259" align="center"><FONT color=#ff0000 size="2"><STRONG>Các 
+		hàm tính toán trên nhóm b&#7843;ng ghi</STRONG></FONT></td>
+		<td width="291" align="center"><STRONG><FONT color=#ff0000 size="2">Các 
+		hàm s&#7917; lý chu&#7895;i</FONT></STRONG></td>
+		<td align="center"><FONT color=#ff0000 size="2"><STRONG>Các phép toán x&#7917; 
+		lý ngày tháng th&#7901;i gian</STRONG></FONT></td>
+	</tr>
+	<tr>
+		<td width="259"><font size="2">MAX(<i>expression</i>): tìm max</font></td>
+		<td width="291"><font size="2">LEN(s): tính chi&#7873;u chu&#7895;i s</font></td>
+		<td><FONT 
+color=#000000 size="2">DATE(): l&#7845;y ngày tháng hi&#7879;n hành</FONT></td>
+	</tr>
+	<tr>
+		<td width="259"><font size="2">MIN(<i>expression</i>): tìm min</font></td>
+		<td width="291"><font size="2">LEFT(s, n): l&#7845;y t&#7915; trái chu&#7895;i s, n kí t&#7921;</font></td>
+		<td><font color="#000000" size="2">DAY(<i>dd</i>): l&#7845;y ngày c&#7911;a chu&#7895;i dd</font></td>
+	</tr>
+	<tr>
+		<td width="259"><font size="2">AVG(<i>expression</i>): tính trung bình</font></td>
+		<td width="291"><font size="2">RIGHT(s, sokt): l&#7845;y t&#7915; ph&#7843;i chu&#7895;i s, n kí 
+		t&#7921;</font></td>
+		<td><font color="#000000" size="2">MONTH(<i>dd</i>): l&#7845;y tháng c&#7911;a chu&#7895;i 
+		dd</font></td>
+	</tr>
+	<tr>
+		<td width="259"><font size="2">ABS(x): tính tr&#7883; tuy&#7879;t &#273;&#7889;i</font></td>
+		<td width="291"><font size="2">&quot;%&quot;, &quot;--&quot;: kí t&#7921; thay 
+		th&#7871;</font></td>
+		<td><font color="#000000" size="2">YEAR(<i>dd</i>): l&#7845;y n&#259;m c&#7911;a chu&#7895;i dd</font></td>
+	</tr>
+	<tr>
+		<td width="259"><font size="2">SQRT(x): bình ph&#432;&#417;ng</font></td>
+		<td width="291">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="259"><font size="2">LOG(x): log</font></td>
+		<td width="291">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="259"><font size="2">SIGN(x): làm tròn</font></td>
+		<td width="291">&nbsp;</td>
+		<td>
+&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="259"><font size="2">EXP(x): hàm m&#361;</font></td>
+		<td width="291">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="259">
+<font size="2">count(): hàm &#273;&#7871;m</font></td>
+		<td width="291">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="259">
+<font size="2">Sum(): tính t&#7893;ng</font></td>
+		<td width="291">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="259">
+<span style="font-family: Times New Roman"><font size="2">ROUND(x, n): </font></span><font size="2">
+làm tròn</font></td>
+		<td width="291">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909; 1: Xu&#7845;t s&#7889; t&#7893;ng s&#7889; &#273;&#259;ng kí môn h&#7885;c l&#7899;n 
+nh&#7845;t</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select max (TongSoDK)</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from MonHoc</b></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909; 2: Xu&#7845;t t&#7845;t s&#7889; sinh viên trung bình &#273;&#259;ng kí 
+môn h&#7885;c</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select AVG (TongSoDK)</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from MonHoc</b></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909; 3: Hãy &#273;&#7871;m xem có t&#7893;ng s&#7889; bao nhiêu giáo viên</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select count(*)</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from GiaoVien</b></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909; 4: tính t&#7893;ng s&#7889; &#273;&#259;ng kí môn h&#7885;c</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select sum(TongSoDK)</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from MonHoc</b></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909; 5: xu&#7845;t thông tin b&#7843;ng ch&#7845;m công tháng 3 n&#259;m 
+2008</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select *</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from BangChamCong</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where month(Ngay) = 3 and 
+year(Ngay) = 2008</b></p>
+<p>&nbsp;</p>
+<p>L&#7879;nh gom nhóm<b> <font color="#5E8AB6">group by</font></b>, gom nhóm kèm &#273;i&#7873;u 
+ki&#7879;n<b> <font color="#5E8AB6">Group by ... Having.</font></b></p>
+<p><font color="#FF0000"><b>&nbsp;&nbsp;&nbsp; Chú ý: ch&#7881; &#273;&#432;&#7907;c select nh&#7919;ng 
+tr&#432;&#7901;ng có trong m&#7879;nh &#273;&#7873; gom nhóm Group by. </b></font></p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909; 5: Xu&#7845;t MaGV và t&#7893;ng s&#7889; bu&#7893;i giáo viên 
+&#273;ó &#273;&#432;&#7907;c ch&#7845;m công</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select MaGV, count(MaGV) as 
+TongSoBuoi</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from BangChamCong</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; group by MaGV</b></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; V&#7899;i b&#7843;ng d&#7919; li&#7879;u nh&#432; sau:</p>
+<p><i>&nbsp;&nbsp;&nbsp; </i>
+<span style="font-size: 12.0pt; font-family: Times New Roman">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[if gte vml 1]><v:shape
+ id="_x0000_s1027" type="#_x0000_t75" style='width:363.75pt;height:153pt'>
+ <v:imagedata src="c2_files/image003.png" o:title="" cropbottom="48060f"
+  cropright="39595f"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=485 height=204
+src="c2_files/image004.jpg" v:shapes="_x0000_s1027"><![endif]></span></p>
+<p><span style="font-family: Times New Roman"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font></span>&nbsp;K&#7871;t qu&#7843;:</p>
+<span style="font-size: 12.0pt; font-family: Times New Roman">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[if gte vml 1]><v:shape
+ id="_x0000_s1028" type="#_x0000_t75" style='width:139.5pt;height:79.5pt'>
+ <v:imagedata src="c2_files/image005.png" o:title="" croptop="34953f"
+  cropbottom="21845f" cropleft=".125" cropright="47787f"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=186 height=106
+src="c2_files/image006.jpg" v:shapes="_x0000_s1028"><![endif]></span><p><b>&nbsp;&nbsp;&nbsp;
+</b></p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909; 6: Xu&#7845;t MaGV và t&#7893;ng s&#7889; ti&#7871;t c&#7911;a các 
+bu&#7893;i mà giáo viên &#273;ó &#273;&#432;&#7907;c ch&#7845;m công</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select MaGV, sum(SoTiet) as 
+TongSoTiet</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from BangChamCong</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; group by MaGV</b></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; K&#7871;t qu&#7843;:</p>
+<p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i>
+<span style="font-size: 12.0pt; font-family: Times New Roman">&nbsp; <!--[if gte vml 1]><v:shape
+ id="_x0000_s1029" type="#_x0000_t75" style='width:139.5pt;height:79.5pt'>
+ <v:imagedata src="c2_files/image007.png" o:title="" croptop="34953f"
+  cropbottom="21845f" cropleft=".125" cropright="47787f"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=186 height=106
+src="c2_files/image008.jpg" v:shapes="_x0000_s1029"><![endif]></span><font size="3"><span style="font-family: Times New Roman">&nbsp;&nbsp;&nbsp;
+</span></font></p>
+<p><b>&nbsp;&nbsp;&nbsp; </b></p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909; 7: Xu&#7845;t MaGV, MaMH và t&#7893;ng s&#7889; ti&#7871;t c&#7911;a 
+t&#432;ng môn mà giáo viên &#273;ó &#273;&#432;&#7907;c ch&#7845;m công</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select MaGV, MaMH, sum(SoTiet) 
+as TongSoTiet</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from BangChamCong</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; group by MaGV, MaMH</b></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; K&#7871;t qu&#7843;:</p>
+<p><i>&nbsp;&nbsp;&nbsp; </i>
+<span style="font-size: 12.0pt; font-family: Times New Roman">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[if gte vml 1]><v:shape
+ id="_x0000_s1030" type="#_x0000_t75" style='width:188.25pt;height:104.25pt'>
+ <v:imagedata src="c2_files/image009.png" o:title="" croptop="34952f"
+  cropbottom="19661f" cropleft="8162f" cropright=".6875"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=251 height=139
+src="c2_files/image010.jpg" v:shapes="_x0000_s1030"><![endif]></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909; 8: Xu&#7845;t MaGV và t&#7893;ng s&#7889; ti&#7871;t c&#7911;a các 
+bu&#7893;i mà giáo viên &#273;ó &#273;&#432;&#7907;c ch&#7845;m công l&#7899;n h&#417;n 10 ti&#7871;t</p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select MaGV, sum(SoTiet) as 
+TongSoTiet</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from BangChamCong</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; group by MaGV</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Having sum(SoTiet) &gt; 10</b></p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909; 9: xu&#7845;t thông tin h&#7885; tên giáo viên và t&#7893;ng s&#7889; 
+ti&#7871;t giáo viên &#273;ã &#273;&#432;&#7907;c ch&#7845;m công gi&#7843;ng d&#7841;y có s&#7855;p x&#7871;p theo th&#7913; t&#7921; gi&#7843;m d&#7847;n theo 
+t&#7893;ng s&#7889; ti&#7871;t</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>select HoGV, TenGV, sum(SoTiet) 
+as TongSotiet</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from GiaoVien gv, BangChamCong 
+bcc</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where gv.MaGV = bcc.MaGV</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; group by gv.MaGV, HoGV, TenGV</b></p>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; order by sum(SoTiet)</b></p>
+<p><span style="font-size: 13pt"><i><span style="font-family: Times New Roman">&nbsp;&nbsp;&nbsp;&nbsp;
+</span></i></span></p>
+<H1 class=heading1><EM>3. Nhóm l&#7879;nh c&#7853;p nh&#7853;t d&#7919; li&#7879;u</EM></H1>
+<div id="content0">
+&nbsp;<p><font color="#ff0000"><strong>1. L&#7879;nh Insert Into.</strong></font></p>
+	<p>&nbsp;&nbsp;&nbsp; Cú pháp câu l&#7879;nh:&nbsp;&nbsp;&nbsp; </p>
+	<p><em><strong>&nbsp;&nbsp;&nbsp; INSERT INTO tablename</strong><br>
+	<strong>&nbsp;&nbsp;&nbsp; (<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	attribute1name,<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	attribute2name,<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	attribute3name,<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	...,<br>
+	&nbsp;&nbsp;&nbsp;
+	)</strong></em> </p>
+	<p><em><strong>&nbsp;&nbsp;&nbsp; values</strong><br>
+	<strong>&nbsp;&nbsp;&nbsp; (<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	value1,<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	value2,<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	value3,<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	...,</strong></em></p>
+	<p><em><strong>&nbsp;&nbsp;&nbsp; )</strong></em><strong><em>;</em></strong></p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909; 1: thêm giáo viên vào b&#7843;ng giáo viên</p>
+	<blockquote>
+		<p><b>Insert into GiaoVien (MaGV, HoGV, TenGV, DiaChi, SoDT) </b></p>
+		<p><b>Values</b></p>
+		<p><b>('GV04', 'Nguyen Van', 'An', '7 Hoang Hoa Tham', '063822344');</b></p>
+	</blockquote>
+	<p>&nbsp;&nbsp;&nbsp; Ví d&#7909; 2: thêm m&#7897;t b&#7897; d&#7919; li&#7879;u vào b&#7843;ng ch&#7845;m công&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+	<blockquote>
+		<p><b>Insert into BangChamCong (MaGV, MaMH, SoTiet, Buoi, Ngay) </b></p>
+		<p><b>Values</b></p>
+		<p><b>('GV04', 'MH01', 4, 'sang', '12/3/2008');</b></p>
+	</blockquote>
+	<p><font color="#ff0000"><strong>2. L&#7879;nh Update.</strong></font></p>
+	<p><strong style="FONT-WEIGHT: 400">&nbsp;&nbsp;&nbsp; Cú pháp l&#7879;nh:</strong></p>
+	<p><em><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UPDATE tablename SET attribute1name=value1 WHERE 
+	attribute2name=Value2</strong></em></p>
+	<p><strong style="FONT-WEIGHT: 400">&nbsp;&nbsp;&nbsp; Ví d&#7909;: C&#7853;p nh&#7853;t 
+	l&#7841;i d&#7919; li&#7879;u cho giáo viên có mã 
+	là GV04, &#273;&#7893;i tên c&#7911;a giáo viên này là Quan.</strong></p>
+	<blockquote>
+		<p><strong>Update GiaoVien </strong></p>
+		<p><strong>Set TenGV = 'Quan'</strong></p>
+		<p><strong>Where MaGV = 'GV04'</strong></p>
+	</blockquote>
+	<p><font color="#ff0000"><strong>2. L&#7879;nh Delete.</strong></font></p>
+	<p>&nbsp;&nbsp;&nbsp; Cú pháp l&#7879;nh:</p>
+	<p><em><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DELETE FROM tablename WHERE attributename=Value</strong></em></p>
+	<p>&nbsp;&nbsp;&nbsp; Ví d&#7909;: Xoá giáo viên trong b&#7843;ng GiaoVien có MaGV là 
+	GV04 ra kh&#7887;i c&#417; s&#7903; d&#7919; 
+	li&#7879;u</p>
+	<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Delete From GiaoVien</b></p>
+	<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Where MaGV = 'GV04'</b><p>&nbsp;</div>
+<H1 class=heading1><EM>4. bài t&#7853;p</EM></H1>
+
+<P><STRONG><FONT color=#ff0000>1. Th&#7921;c hi&#7879;n các câu truy v&#7845;n trên c&#417; s&#7903; d&#7919; 
+li&#7879;u 
+</FONT><font color="#6600ff">DeAn</font></STRONG></P>
+<ol>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">
+	Tìm h&#7885; tên c&#7911;a t&#7845;t c&#7843; các nhân viên.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">
+	Xu&#7845;t thông tin t&#7845;t c&#7843; các nhân viên mà tên c&#7911;a h&#7885; b&#7855;t &#273;&#7847;u b&#7857;ng ch&#7919; T và &#7903; TP 
+	HCM</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">
+	Xu&#7845;t thông tin t&#7845;t c&#7843; các nhân viên Nam c&#7911;a phòng s&#7889; 5.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">
+	Tìm h&#7885; tên và &#273;&#7883;a ch&#7881; c&#7911;a t&#7845;t c&#7843; các nhân viên thu&#7897;c phòng s&#7889; 5.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">
+	Tìm t&#7845;t c&#7843; các nhân viên d&#432;&#7899;i s&#7921; qu&#7843;n lý c&#7911;a ng&#432;&#7901;i có mã là 333445555.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">
+	<span style="font-style:normal; font-variant:normal; font-weight:normal">S&#7855;p x&#7871;p (t&#259;ng/gi&#7843;m) theo tên, n&#7871;u tên trùng nhau thì theo ngày sinh.</span></p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">
+	<span style="font-style:normal; font-variant:normal; font-weight:normal">Hi&#7875;n th&#7883; thông tin 
+	nhân viên theo t&#7915;ng phòng</span>.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">Tìm s&#7889; 
+	nhân viên c&#7911;a t&#7915;ng phòng và s&#7855;p x&#7871;p theo th&#7913; t&#7921; t&#259;ng.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">In 
+	thông tin h&#7885; tên, &#273;&#7883;a ch&#7881; ,m&#7913;c l&#432;&#417;ng tr&#432;&#7903;ng phòng c&#7911;a t&#7845;t c&#7843; các phòng.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">
+	Tìm các &#273;&#7873; án mà tên có ch&#7913;a chu&#7895;i &quot;San pham&quot;.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">
+	Tìm thông tin các &#273;&#7873; án c&#7911;a phòng s&#7889; 5 và có &#273;&#7883;a &#273;i&#7875;m là TP HCM.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">Tìm tên 
+	và &#273;&#7883;a ch&#7881; c&#7911;a t&#7845;t c&#7843; các nhân viên c&#7911;a phòng nghiên c&#7913;u.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">
+	<span style="font-style:normal; font-variant:normal; font-weight:normal">Cho 
+bi&#7871;t t&#7893;ng s&#7889; &#273;&#7873; án trong công ty.</span></p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">Tìm t&#7845;t 
+	c&#7843; các nhân viên sinh sau n&#259;m 1955.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">Tìm các 
+	nhân viên sinh trong tháng 8 &#273;&#7871;n tháng 12.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">Tìm 
+	nhân viên &#273;&#7883;a ch&#7881; &#7903; qu&#7853;n 1, TP HCM.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">Tìm 
+	nhân viên c&#7911;a phòng 'Nghien Cuu' mà &#273;&#7883;a ch&#7881; không ph&#7843;i t&#7841;i thành ph&#7889; HCM.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">Tìm 
+	phòng có m&#7913;c l&#432;&#417;ng trung bình &gt; 40000.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">Tìm m&#7913;c l&#432;&#417;ng cao nh&#7845;t 
+	trong công ty.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">Tìm t&#7845;t 
+	c&#7843; các nhân viên tham gia &#273;&#7873; án &quot;Tin Hoc Hoa&quot; có th&#7901;i gian làm vi&#7879;c &gt;30 
+	gi&#7901;/tu&#7847;n.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">Xu&#7845;t 
+	thông tin nhân viên theo t&#7915;ng &#273;&#7873; án mà h&#7885; tham gia.</p></li>
+</ol>
+<P>
+<STRONG>
+<FONT color=#ff0000>2. Th&#7921;c hi&#7879;n các câu truy v&#7845;n trên c&#417; s&#7903; d&#7919; 
+li&#7879;u 
+</FONT><font color="#6600ff">NganHang</font></STRONG>&nbsp;</P>
+<ol>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">
+	Tìm tên t&#7845;t c&#7843; các ngân hàng có chi nhánh ngân hàng &#7903; thanh ph&#7889; “Da Lat”.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Tìm t&#7845;t c&#7843; nh&#7919;ng thành ph&#7889; mà có chi nhánh c&#7911;a ngân hàng 
+	công th&#432;&#417;ng.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Tìm 
+	thông tin v&#7873; t&#7845;t c&#7843; các chi nhánh c&#7911;a ngân hàng công th&#432;&#417;ng có &#273;&#7883;a &#273;i&#7875;m &#7903; TP 
+	HCM.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Xu&#7845;t 
+	thông tin t&#7915;ng ngân hàng và chi nhánh c&#7911;a nó.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Tìm 
+	khách hàng mà &#273;&#7883;a ch&#7881; c&#7911;a h&#7885; &#7903; 'Ha Noi'.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Tìm 
+	các khách hàng có tên Son.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Tìm 
+	các khách hàng mà &#273;&#7883;a ch&#7881; c&#7911;a h&#7885; &#7903; &#273;&#432;&#7901;ng &quot;Tran Hung Dao&quot;.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Tìm 
+	các khách hàng có tên &quot;Thao&quot;.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Tìm 
+	khách hàng có mã s&#7889; b&#7855;t &#273;&#7847;u là '11' và &#7903; TP HCM. </p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Xu&#7845;t 
+	thông tin v&#7873; tên ngân hàng, thành ph&#7889; chi nhánh và tài s&#7843;n theo th&#7913; t&#7921; t&#259;ng 
+	c&#7911;a tài s&#7843;n c&#7911;a chi nhánh, n&#7871;u tài s&#7843;n trùng nhau 
+	thì s&#7855;p t&#259;ng theo thành ph&#7889; chi nhánh.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Tìm 
+	thông tin t&#7845;t c&#7843; nh&#7919;ng thông tin v&#7873; ngân hàng và chi nhánh ngân hàng mà tài s&#7843;n 
+	3000000000 &lt; tài s&#7843;n &lt; 
+5000000000.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Cho 
+	bi&#7871;t tài s&#7843;n trung bình chi nhánh c&#7911;a t&#7915;ng ngân hàng.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Tim 
+	thông tin c&#7911;a khách hàng có tài kho&#7843;n vay t&#7841;i ngân hàng công th&#432;&#417;ng và có 
+	tên là 'Thao'.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Xu&#7845;t 
+	thông tin v&#7873; tên ngân hàng và t&#7893;ng tài s&#7843;n c&#7911;a các ngân hàng.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Tìm 
+	MaCN và TaiSan c&#7911;a chi nhánh có tài s&#7843;n l&#7899;n nh&#7845;t.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Li&#7879;t 
+	kê t&#7845;t c&#7843; nh&#7919;ng nh&#7919;ng khách hành có tài kho&#7843;n g&#7903;i t&#7841;i chi nhánh ngân 
+hàng “A Chau”.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Tìm t&#7845;t c&#7843; các s&#7889; tài kho&#7843;n vay th&#7921;c hi&#7879;n t&#7841;i chi nhánh c&#7911;a ngân hàng 
+	ngo&#7841;i th&#432;&#417;ng mà s&#7889; ti&#7873;n vay &gt; 1200000.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Tính 
+	t&#7893;ng s&#7889; ti&#7873;n mà m&#7895;i chi nhánh ngân hàng &#273;ang 
+	&#273;&#432;&#7907;c khách hàng g&#7903;i.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Xu&#7845;t 
+	thông tin v&#7873; tài kho&#7843;n vay và tài kho&#7843;n g&#7903;i hi&#7879;n có c&#7911;a t&#7845;t c&#7843; các khách 
+	hàng có tên là 'Son'.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Tìm 
+	thông tin v&#7873; khách hàng có t&#7893;ng s&#7889; ti&#7873;n vay t&#7841;i t&#7845;t c&#7843; các ngân hàng &gt; 
+	30000000.</p></li>
+</ol>
+<P>
+<strong><font color="#FF0000">3</font><FONT color=#ff0000>. Th&#7921;c hi&#7879;n các câu truy v&#7845;n trên c&#417; s&#7903; d&#7919; 
+li&#7879;u 
+</FONT><font color="#6600FF">QuanLyHocVien</font></strong></P>
+<ol>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">
+	In thông tin h&#7885;c viên có k&#7871;t qu&#7843; h&#7885;c t&#7853;p x&#7871;p lo&#7841;i y&#7871;u.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">
+	Xu&#7845;t thông tin h&#7885;c viên theo th&#7913; t&#7921; gi&#7843;m c&#7911;a &#273;i&#7875;m.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">
+	Xu&#7845;t thông tin các khóa h&#7885;c có ngày b&#7855;t &#273;&#7847;u trong tháng 5 n&#259;m 1997.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">
+	Tìm thông tin v&#7873; các khóa h&#7885;c chuyên tu.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">
+	Hi&#7875;n th&#7883; thông tin cá nhân và thông tin v&#7873; l&#7899;p h&#7885;c, &#273;i&#7875;m c&#7911;a các h&#7885;c viên h&#7885; 
+	Nguy&#7877;n và có tên là Mai. </p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">
+	Xu&#7845;t thông tin tên l&#7899;p h&#7885;c và tên l&#7899;p tr&#432;&#7903;ng c&#7911;a l&#7899;p h&#7885;c &#273;ó.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">
+	Xu&#7845;t thông tin v&#7873; t&#7845;t c&#7843; các h&#7885;c viên &#273;&#7841;t lo&#7841;i khá và gi&#7887;i c&#7911;a l&#7899;p do giáo 
+	viên Tran Thanh ph&#7909; trách.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">
+	Xu&#7845;t thông tin t&#7845;t c&#7843; các h&#7885;c viên &#273;&#432;&#7907;c mi&#7877;n h&#7885;c phí và có k&#7871;t qu&#7843; h&#7885;c t&#7853;p 
+	trung bình tr&#7903; lên.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">
+	Cho bi&#7871;t k&#7871;t qu&#7843; cu&#7889;i khoá c&#7911;a các h&#7885;c viên do giáo viên &quot;Tran Thanh&quot; ho&#7863;c 
+	giáo viên &quot;Ho Nhan&quot; d&#7841;y trong khoá có mã s&#7889; &quot;PT197&quot;.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Cho 
+	bi&#7871;t danh sách l&#7899;p h&#7885;c và s&#7889; l&#432;&#7907;ng h&#7885;c viên th&#7921;c s&#7921; c&#7911;a l&#7899;p &#273;ó.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Cho 
+	bi&#7871;t s&#7889; &#273;i&#7875;m cao nh&#7845;t mà h&#7885;c viên &#273;&#7841;t &#273;&#432;&#7907;c c&#7911;a t&#7915;ng 
+	l&#7899;p h&#7885;c</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">In 
+	thông tin v&#7873; s&#7889; l&#432;&#7907;ng h&#7885;c viên th&#7921;c s&#7921; c&#7911;a t&#7915;ng l&#7899;p h&#7885;c theo th&#7913; t&#7921; t&#259;ng c&#7911;a 
+	s&#7889; l&#432;&#7907;ng</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Cho 
+	bi&#7871;t tên l&#7899;p h&#7885;c, tên giáo viên ph&#7909; trách, s&#297; s&#7889; d&#7921; ki&#7871;n và phòng h&#7885;c c&#7911;a 
+	l&#7899;p h&#7885;c b&#7855;t &#273;&#7847;u t&#7915; ngày 17/4/2000.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Cho 
+	bi&#7871;t tên các l&#7899;p h&#7885;c và &#273;i&#7875;m trung bình c&#7911;a t&#7845;t c&#7843; các h&#7885;c viên trong l&#7899;p.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Cho 
+	bi&#7871;t h&#7885; tên, &#273;&#7883;a ch&#7881; c&#7911;a các h&#7885;c viên là giáo viên &#273;&#7891;ng th&#7901;i làm l&#7899;p tr&#432;&#7903;ng.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Cho 
+	bi&#7871;t h&#7885; tên giáo viên và s&#7889; l&#432;&#7907;ng l&#7899;p mà giáo viên &#273;ó &#273;ã d&#7841;y.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Cho bi&#7871;t h&#7885; 
+	tên, k&#7871;t qu&#7843; h&#7885;c t&#7853;p c&#7911;a nh&#7919;ng h&#7885;c viên &#273;&#432;&#7907;c mi&#7877;n h&#7885;c phí.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -18.0pt; margin-left: 54.0pt">Cho 
+	bi&#7871;t tên h&#7885;c viên, tên l&#7899;p mà h&#7885;c viên &#273;ó h&#7885;c và s&#7889; biên lai t&#432;&#417;ng &#7913;ng, v&#7899;i 
+	&#273;i&#7873;u ki&#7879;n các l&#7899;p này là c&#7911;a các khoá h&#7885;c k&#7871;t thúc tr&#432;&#7899;c ngày 30/5/2000.</p>
+	</li>
+</ol>
+<P>
+<STRONG>
+<FONT color=#ff0000>4. Th&#7921;c hi&#7879;n các thao tác c&#7853;p nh&#7853;t d&#7919; li&#7879;u trên c&#417; s&#7903; d&#7919; li&#7879;u 
+</FONT><font color="#6600FF">DeAn, 
+Ng</font><font color="#6600ff">anHang, QuanLyHocVien</font></STRONG>&nbsp;</P>
+<ol>
+	<ol>
+		<li>
+		<P style="margin-bottom: 2px">Thêm dòng &lt;'Tran', 'Minh', 'Tuan', 
+		'943775543', '21/06/1942','23 Tran Binh Trong, Q5, TP HCM', 'Nam', 
+		58000, '888665555',1&gt; vào b&#7843;ng NhanVien</P></li>
+		<li>
+		<P style="margin-bottom: 2px">Thêm dòng &lt;'Sam Pham A', 4, 'Vung Tau',2&gt; 
+		vào b&#7843;ng DeAn</P></li>
+		<li>
+		<P style="margin-bottom: 2px">Thêm dòng &lt;'677678989', null, '40.0'&gt; vào 
+		b&#7843;ng PhanCong</P></li>
+		<li>
+		<P style="margin-bottom: 2px">Thêm dòng &lt;'453453453', 'Tien', 'Nam', 
+		'12/12/1960','Vo Chong'&gt; vào ThanNhan.</P></li>
+		<li>
+		<P style="margin-bottom: 2px">Xoá các b&#7897; tho&#7843; mãn MaNV = '333445555' 
+		trong b&#7843;ng PhanCong.</P></li>
+		<li>
+		<P style="margin-bottom: 2px">xoá trong các b&#7897; tho&#7843; MaNV = '987654321' 
+		trong b&#7843;ng NhanVien</P></li>
+		<li>
+		<P style="margin-bottom: 2px">Xoá &#273;&#7873; án có tên 'San Pham X' trong b&#7843;ng 
+		DeAn</P></li>
+		<li>
+		<P style="margin-bottom: 2px">T&#259;ng 
+	th&#7901;i gian tham gia &#273;&#7873; án c&#7911;a các nhân viên nam lên thêm 4 gi&#7901;/tu&#7847;n.</P>
+		</li>
+		<li>
+		<P style="margin-bottom: 2px">Xoá t&#7845;t c&#7843; các nhân viên có m&#7913;c l&#432;&#417;ng &lt; 30000.</P>
+		</li>
+		<li>
+		<P style="margin-bottom: 2px">Th&#7921;c hi&#7879;n các thao tác thêm, xóa, s&#7917;a trên 
+		các b&#7843;ng c&#7911;a c&#417; s&#7903; d&#7919; li&#7879;u NganHang.</P>
+		</li>
+		<li>
+		<P style="margin-bottom: 2px">Tìm t&#7845;t c&#7843; các khách hàng có tài kho&#7843;n g&#7903;i 
+		t&#7841;i ngân hàng ngo&#7841;i th&#432;&#417;ng v&#7899;i s&#7889; ti&#7873;n g&#7903;i l&#7899;n h&#417;n 15000000 và c&#7897;ng thêm 
+		vào s&#7889; ti&#7873;n g&#7903;i hi&#7879;n có c&#7911;a h&#7885; 1000000</P>
+		</li>
+		<li>
+		<P style="margin-bottom: 2px">Th&#7921;c hi&#7879;n các thao tác thêm, xóa s&#7917;a trên 
+		các b&#7843;ng c&#7911;a c&#417; s&#7903; d&#7919; li&#7879;u QuanLyHocVien.</P>
+		</li>
+		<li>
+		<P style="margin-bottom: 2px">Tìm t&#7845;t c&#7843; các h&#7885;c viên là h&#7885;c sinh và c&#7853;p 
+		nh&#7853;t h&#7885;c phí b&#7857;ng 1/2 h&#7885;c phí. </P></li>
+	</ol>
+</ol>
+<blockquote>
+	<P style="margin-bottom: 2px"><u><b><a href="index.html"><u>Tr&#7903; L&#7841;i</u></a></b></u></P>
+</blockquote>
+</DIV>
+<DIV id=signature><FONT face=Verdana size=2><A 
+href="http://informatics.indiana.edu/">
+	<IMG src="c1_files/informatics_blue.gif" 
+border=0></A> <BR>Liên l&#7841;c: nttbinhdl@gmail.com</FONT></DIV>
+<p>&nbsp;</p>
+
+</BODY></HTML>

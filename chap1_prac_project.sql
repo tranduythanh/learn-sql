@@ -1,0 +1,99 @@
+USE master;
+
+GO
+ALTER DATABASE DEAN SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+
+GO
+DROP DATABASE DEAN;
+
+GO
+CREATE DATABASE DEAN;
+
+GO
+    USE DEAN;
+
+GO
+    CREATE TABLE NhanVien (
+        MaNV INT PRIMARY KEY,
+
+        HoNV NVARCHAR(50) NOT NULL,
+        TenLot NVARCHAR(50),
+        TenNV NVARCHAR(50) NOT NULL,
+        NgaySinh DATE NOT NULL,
+        DiaChi NVARCHAR(255),
+        Phai NVARCHAR(10) NOT NULL,
+        Luong DECIMAL(10, 2) NOT NULL,
+        Ma_NQL INT,
+        Phong NVARCHAR(100),
+    );
+
+GO
+    CREATE TABLE PhongBan (
+        TenPhong NVARCHAR(100) NOT NULL,
+
+        MaPHG INT PRIMARY KEY,
+        TruongPHG INT,
+        Ngay_NChuc DATE,
+    );
+
+GO
+ALTER TABLE PhongBan ADD CONSTRAINT FK_PhongBan_NhanVien
+    FOREIGN KEY (TruongPHG) REFERENCES NhanVien(MaNV) ON DELETE SET NULL;
+
+
+GO
+ALTER TABLE NhanVien ADD CONSTRAINT FK_NhanVien_NhanVien
+    FOREIGN KEY (Ma_NQL) REFERENCES NhanVien(MaNV);
+
+GO
+    CREATE TABLE DiaDiem_PHG (
+        MaPHG INT NOT NULL,
+        DiaDiem NVARCHAR(255) NOT NULL,
+    
+        PRIMARY KEY (MaPHG, DiaDiem),
+    );
+
+GO
+ALTER TABLE DiaDiem_PHG ADD CONSTRAINT FK_DiaDiem_PHG_PhongBan
+    FOREIGN KEY (MaPHG) REFERENCES PhongBan(MaPHG) ON DELETE CASCADE;
+
+GO
+    CREATE TABLE DeAn (
+        MaDA INT PRIMARY KEY,
+
+        TenDA NVARCHAR(100) NOT NULL,
+        DiaDiem_DA NVARCHAR(255),
+        SoDA NVARCHAR(50) NOT NULL,
+        Phong NVARCHAR(100),
+    );
+
+GO
+    CREATE TABLE PhanCong (
+        MaNV INT NOT NULL,
+        MaDA INT NOT NULL,
+        ThoiGian DECIMAL(10, 2) NOT NULL,
+        
+        PRIMARY KEY (MaNV, MaDA),
+    );
+
+GO
+ALTER TABLE PhanCong ADD CONSTRAINT FK_PhanCong_NhanVien
+        FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV) ON DELETE CASCADE;
+ALTER TABLE PhanCong ADD CONSTRAINT FK_PhanCong_DeAn
+        FOREIGN KEY (MaDA) REFERENCES DeAn(MaDA) ON DELETE CASCADE;
+
+GO
+    CREATE TABLE ThanNhan (
+        MaNV INT NOT NULL,
+        TenTN NVARCHAR(100) NOT NULL,
+        
+        Phai NVARCHAR(10) NOT NULL,
+        NgaySinh DATE NOT NULL,
+        QuanHe NVARCHAR(50) NOT NULL,
+        
+        PRIMARY KEY (MaNV, TenTN),
+    );
+
+GO
+ALTER TABLE ThanNhan ADD CONSTRAINT FK_ThanNhan_NhanVien
+        FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV) ON DELETE CASCADE;

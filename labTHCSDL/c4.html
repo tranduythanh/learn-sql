@@ -1,0 +1,538 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0052)http://informatics.indiana.edu/rocha/i101/lab10.html -->
+<HTML xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40"><HEAD><TITLE>Th&#7921;c hành C&#417; S&#7903; D&#7919; Li&#7879;u - lab 4</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252"><LINK 
+title=style href="c1_files/cybercorner_style_nomenu.css" type=text/css 
+rel=stylesheet>
+<META content="Luis Mateus Rocha, Santiago Schnell" name=author>
+<META http-equiv=copyright content="Luis Mateus Rocha, Santiago Schnell">
+<META http-equiv=reply-to content=rocha@lanl.gov>
+<META http-equiv=resource-type content=document>
+<META http-equiv=decription 
+content="Course Materials for I101 Introduction to Informatics">
+<META http-equiv=keywords 
+content="Luis Rocha, Santiago Schnell, Informatics, Information, Knowledge, technology.">
+<META url=http://informatics.indiana.edu/rocha/I101/lab10.html>
+<META content="MSHTML 6.00.3790.0" name=GENERATOR>
+<link rel="File-List" href="c4_files/filelist.xml">
+
+<!--[if !mso]>
+<style>
+v\:*         { behavior: url(#default#VML) }
+o\:*         { behavior: url(#default#VML) }
+.shape       { behavior: url(#default#VML) }
+</style>
+<![endif]--><!--[if gte mso 9]>
+<xml><o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]-->
+</HEAD>
+<BODY>
+<DIV id=content>
+<H1 class=title><u>lab4</u>:&nbsp; ngôn ng&#7919; T_SQL,&nbsp;&nbsp; store procedure&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </H1>
+<H2 class=heading2><em>Gi&#7899;i thi&#7879;u</em></H2>
+<P>T_SQL là ngôn ng&#7919; SQL m&#7903; r&#7897;ng d&#7921;a trên n&#7873;n SQL chu&#7849;n. T_SQL &#273;&#432;&#7907;c chia làm 3 
+nhóm:</P>
+<ul>
+	<li>Data Defination Language(DDL): Là nh&#7919;ng l&#7879;nh &#273;&#7875; qu&#7843;n lý m&#7897;t database.</li>
+	<li>Data Control Language(DCL): là nh&#7919;ng l&#7879;mh qu&#7843;n lý quy&#7873;n truy c&#7853;p trên 
+	t&#7915;ng &#273;&#7889;i t&#432;&#7907;ng.</li>
+	<li>Data Manipulation Language(DML): là nh&#7919;ng l&#7879;nh dùng &#273;&#7875; x&#7917; lý d&#7919; li&#7879;u.</li>
+</ul>
+<H1 class=heading1><EM>1. Cú pháp l&#7879;nh</EM></H1>
+<P><FONT color=#ff0000><STRONG>1. Khai báo bi&#7871;n</STRONG></FONT><strong><font color="#FF0000">&nbsp;&nbsp;&nbsp;
+</font></strong></P>
+<P>&nbsp;&nbsp;&nbsp; Bi&#7871;n ph&#7843;i &#273;&#432;&#7907;c khai báo tr&#432;&#7899;c khi s&#7917; d&#7909;ng. 
+Bi&#7871;n trong TSQL có hai ph&#7841;m vi: bi&#7871;n toàn c&#7909;c, bi&#7871;n c&#7909;c b&#7897;.</P>
+<P>&nbsp;&nbsp;&nbsp; T&#7845;t c&#7843; các bi&#7871;n &#273;&#432;&#7907;c t&#7841;o ra trong các store procedure là bi&#7871;n c&#7909;c b&#7897;, bi&#7871;n 
+toàn c&#7909;c là bi&#7871;n dành riêng c&#7911;a SQL Server và nó không th&#7875; &#273;&#432;&#7907;c gán giá tr&#7883; b&#7903;i 
+ng&#432;&#7901;i dùng.</P>
+<P>&nbsp;&nbsp;&nbsp; Cú pháp khai báo bi&#7871;n:</P>
+<P><em><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Declare @varname1 <font color="#006600">datatype1</font>, 
+@varname2 <font color="#006600">datatype2</font>,....</strong></em></P>
+<P>&nbsp;&nbsp;&nbsp; </P>
+<P>&nbsp;&nbsp;&nbsp; Ví d&#7909; 1:</P>
+<P><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; declare @HoGV nvarchar(50), 
+@tongsotiet int</b></P>
+<P>&nbsp;&nbsp;&nbsp; </P>
+<P>&nbsp;&nbsp;&nbsp; Ví d&#7909; 2:</P>
+<P><b><font face="Verdana">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; declare @ClassIdent nvarchar(10)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a >&nbsp;&nbsp;&nbsp;&nbsp; </a></font></b></P>
+<P><b><font face="Verdana"><a >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SET @MaGV</a> 
+= 'GV01'</font></b></P>
+<P><b><font face="Verdana">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SELECT 
+HoGV, TenGV</font></b></P>
+<P><b><font face="Verdana">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from 
+GiaoVien</font></b></P>
+<P><b><font face="Verdana">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WHERE MaGV = @MaGV</font></b></P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000><STRONG>2.&nbsp;&#272;&#7883;nh ngh&#297;a m&#7897;t&nbsp; 
+store procedure</STRONG></FONT></P>
+<P>&nbsp;&nbsp;&nbsp; Cú pháp &#273;&#7883;nh ngh&#297;a m&#7897;t store procedure<strong></p>
+<p><em>&nbsp;&nbsp;&nbsp; CREATE PROCEDURE StoreName</em></P>
+<p><em>&nbsp;&nbsp;&nbsp; (<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @varname1 <font color="#006600">datatype1</font>,
+</em>
+<br><em>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; @varname2 <font color="#006600">
+datatype2</font>,</em></strong></br>
+<strong><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @varname3 <font color="#006600">
+datatype3</font>,</em></strong>
+<br><strong><em>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ....</em></strong></P>
+<p><em><strong>&nbsp;&nbsp;&nbsp; )</strong></em></br></P>
+<P><em><strong>&nbsp;&nbsp;&nbsp; AS<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {SQL_statement | statement_block}<br>
+&nbsp;&nbsp;&nbsp;
+GO</strong></em></P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000><STRONG>3. Chú thích </STRONG></FONT></P>
+<P>&nbsp;&nbsp;&nbsp; Trong T_SQL dùng d&#7845;u - tr&#432;&#7899;c dòng mu&#7889;n chú thích</P>
+<P>&nbsp;</P>
+<P><strong><font color="#FF0000">4</font></strong><FONT color=#ff0000><STRONG>. 
+L&#7879;nh in k&#7871;t qu&#7843; ra màn hình </STRONG></FONT></P>
+<P>&nbsp;&nbsp;&nbsp; Trong T_SQL dùng l&#7879;nh <font color="#5E8AB6"><i><b>print 'chu&#7895;i c&#7847;n in'</b></i></font>. N&#7871;u mu&#7889;n in m&#7897;t bi&#7871;n ki&#7875;u khác 
+chu&#7895;i ra màn hình ta dùng hàm cast &#273;&#7875; chuy&#7875;n ki&#7875;u</P>
+<P>&nbsp;&nbsp;&nbsp; Ví d&#7909;:</P>
+<P><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; declare @t1 int, @t2 int, @t 
+int</b></P>
+<P><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set @t1 = 2</b></P>
+<P><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set @t2 = 3</b></P>
+<P><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set @t = @t1 +@t2</b></P>
+<P><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print cast(@t as nvarchar(2))</b></P>
+<P>&nbsp;</P>
+<H1 class=heading1><em>2. các c&#7845;u trúc &#273;i&#7873;u khi&#7875;n, c&#7845;u trúc l&#7863;p</em></H1>
+<P><FONT color=#ff0000><STRONG>1. IF....ELSE </STRONG></FONT></P>
+<div id="nstext0" valign="top">
+	<blockquote>
+		<p><em><strong>IF Boolean_expression { sql_statement | statement_block }
+		<br>
+		[ <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;ELSE <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;{ sql_statement | statement_block } </strong></em></p>
+		<p><em><strong>] </strong></em></p>
+		<p>Ví d&#7909;:</p>
+		<p><b>&nbsp;&nbsp;&nbsp; if (exists (select MaGV from GiaoVien where 
+		MaGV = 'GV04'))</b></p>
+		<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print 'giao vien nay da 
+		ton tai trong csdl'</b></p>
+	</blockquote>
+</div>
+<P><strong><font color="#FF0000">2</font></strong><FONT color=#ff0000><STRONG>. 
+CASE</STRONG></FONT></P>
+<div id="nstext" valign="top">
+	<blockquote>
+		<p><em><strong>CASE input_expression <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;WHEN when_expression THEN result_expression <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ...n ] <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;[ <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE else_result_expression <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;] <br>
+		END </strong></em></p>
+		<p>Ví d&#7909;:</p>
+		<div id="nstext3" valign="top">
+			<blockquote>
+				<p><b>SELECT TongSoDK, 'Danh Gia' = <br>
+				CASE <br>
+				WHEN TongSoDK &lt;50 THEN 'So sinh vien dang ki it'<br>
+				WHEN TongSoDK &lt;80 THEN 'So sinh vien dang ki trung binh'<br>
+				ELSE 'So sinh vien dang ki dong'<br>
+				END<br>
+				FROM MonHoc</b></p>
+				<p>D&#7919; li&#7879;u:</p>
+				<span style="font-size: 12.0pt; font-family: Times New Roman">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_s1026" type="#_x0000_t75" style='width:212.25pt;
+ height:123pt'>
+ <v:imagedata src="c4_files/image001.png" o:title="" cropbottom="50244f"
+  cropright=".75"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=283 height=164
+src="c4_files/image002.jpg" v:shapes="_x0000_s1026"><![endif]></span><p>K&#7871;t 
+				qu&#7843;:</p>
+				<span style="font-size: 12.0pt; font-family: Times New Roman">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[if gte vml 1]><v:shape
+ id="_x0000_s1025" type="#_x0000_t75" style='width:318pt;height:84.75pt'>
+ <v:imagedata src="c4_files/image003.png" o:title="" croptop="34953f"
+  cropbottom="21845f" cropleft=".125" cropright=".5625"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=424 height=113
+src="c4_files/image004.jpg" v:shapes="_x0000_s1025"><![endif]></span><p>&nbsp;</p>
+			</blockquote>
+		</div>
+	</blockquote>
+</div>
+<P><FONT color=#ff0000><STRONG>3. WHILE</STRONG></FONT></P><p:colorscheme
+ colors="#ffffff,#000000,#808080,#000000,#00cc99,#3333cc,#ccccff,#b2b2b2"/>
+
+<div v:shape="_x0000_s1026">
+	<div id="nstext1" valign="top">
+		<blockquote>
+			<p><em><strong>WHILE Boolean_expression <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;{ sql_statement | statement_block } <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;[ BREAK ] <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;{ sql_statement | statement_block } <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;[ CONTINUE ] </strong></em></p>
+			<p>Ví d&#7909;:</p>
+			<p>&nbsp;&nbsp;&nbsp; WHILE (SELECT avg(TongSoDK) FROM MonHoc) &lt; 45<br>
+&nbsp;&nbsp;&nbsp; BEGIN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UPDATE MonHoc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SET TongSoDK = TongSoDK + 5<br>
+			<br>
+&nbsp;&nbsp;&nbsp; END<br>
+&nbsp;</p>
+		</blockquote>
+	</div>
+</div>
+<H1 class=heading1><em>3. Store procedure</em></H1>
+<P><FONT color=#ff0000><STRONG>1.&nbsp;&#272;&#7883;nh ngh&#297;a m&#7897;t&nbsp; 
+store procedure có tham s&#7889; &#273;&#7847;u vào</STRONG></FONT></P>
+<P>&nbsp;&nbsp;&nbsp; Cú pháp store procedure có tham s&#7889; &#273;&#7847;u vào<strong></p>
+<p><em>&nbsp;&nbsp;&nbsp; CREATE PROCEDURE StoreName</em></P>
+<p><em>&nbsp;&nbsp;&nbsp; (<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @varname1 <font color="#006600">datatype1</font>,
+</em>
+<br><em>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; @varname2 <font color="#006600">
+datatype2</font>,</em></strong></br>
+<strong><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @varname3 <font color="#006600">
+datatype3</font>,</em></strong>
+<br><strong><em>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ....</em></strong></P>
+<p><em><strong>&nbsp;&nbsp;&nbsp; )</strong></em></br></P>
+<P><em><strong>&nbsp;&nbsp;&nbsp; AS<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {SQL_statement | statement_block}<br>
+&nbsp;&nbsp;&nbsp;
+GO</strong></em></P>
+<P>&nbsp;</P>
+<P><FONT color=#ff0000><STRONG>2.&nbsp; Store Procedure có tham s&#7889; &#273;&#7847;u vào và 
+tham s&#7889; &#273;&#7847;u ra.</STRONG></FONT></P>
+<P>&nbsp;&nbsp;&nbsp; Cú pháp store procedure có tham s&#7889; &#273;&#7847;u vào và &#273;&#7847;u ra</p>
+<strong>
+<p><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CREATE PROCEDURE StoreName</em></P>
+<p><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @varname1 <font color="#006600">datatype1</font>,
+</em>
+<br><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; @varname2 <font color="#006600">
+datatype2</font>,</em></strong></br>
+<strong><em>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @varname3 <font color="#006600">
+datatype3</font>,</em></strong>
+<br><strong><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; @varname3 <font color="#006600">
+datatype3 </font>OUTPUT,</em></strong>
+<br>
+<strong><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @varname3 <font color="#006600">
+datatype3 </font>OUTPUT,</em></strong>
+<br><strong><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ....</em></strong></P>
+<p><em><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )</strong></em></br></P>
+<P><em><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AS<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {SQL_statement | statement_block}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+GO</strong></em></P>
+<P>&nbsp;</P>
+<P><strong><font color="#FF0000">3</font></strong><FONT color=#ff0000><STRONG>.&nbsp; 
+Ví d&#7909; v&#7899;i c&#417; s&#7903; d&#7919; li&#7879;u &#272;&#259;ng kí h&#7885;c ph&#7847;n</STRONG></FONT></P>
+<P>&nbsp;&nbsp;&nbsp; Ví d&#7909; 1: vi&#7871;t th&#7911; t&#7909;c &#273;&#7875; thêm môn h&#7885;c vào 
+b&#7843;ng Mon v&#7899;i quy &#273;&#7883;nh mã môn h&#7885;c là duy nh&#7845;t và 
+t&#7893;ng s&#7889; sinh viên &#273;&#259;ng kí ph&#7843;i l&#7899;n h&#417;n ho&#7863;c b&#7857;ng 0, có ki&#7875;m tra ràng bu&#7897;c v&#7873; khóa</p>
+<strong>
+<p><em><font color="#000000">&nbsp;&nbsp;&nbsp; </font></em></strong><b>CREATE 
+PROCEDURE ThemMonHoc</b></P>
+<strong>
+<p><em style="font-style: normal"><font color="#000000">&nbsp;&nbsp;&nbsp; (<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @MaMon nvarchar(10),
+</font>
+</em>
+<font color="#000000">
+<br></font><em style="font-style: normal"><font color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; @TenMon nvarchar(50),</font></em></strong><font color="#000000"></br>
+</font>
+<strong><em style="font-style: normal"><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @TongSoDK int</font></em></strong><font color="#000000"><br>
+</font>
+<em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp; )</font></strong></em><font color="#000000"></br>
+</font></P>
+<P><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp; AS<br>
+&nbsp;&nbsp;&nbsp;
+Begin</font></strong></em></P>
+<P><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(exists(select * from MonHoc where MaMH = @MaMon))</font></strong></em></P>
+<P><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print 'Mon hoc nay 
+da ton tai'</font></strong></em></P>
+<P><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; else if(@TongSoDK &lt; 0) 
+print 'So khong hop le'</font></strong></em></P>
+<P><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else</font></strong></em></P>
+<P><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; begin</font></strong></em></P>
+<P><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; insert into MonHoc(MaMH, 
+TenMH, TongSoDK) values (@MaMon, @TenMon, @TongSoDK)</font></strong></em></P>
+<P><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print 'Them thanh 
+cong'</font></strong></em></P>
+<P><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; end</font></strong></em></P>
+<P><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp; end</font></strong></em></P>
+<P><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp; GO</font></strong></em></P>
+<P>&nbsp;&nbsp;&nbsp; Th&#7921;c thi:</p>
+<P><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exec ThemMonHoc 'MH01', 'Lap trinh Java', 50</font></strong></em></p>
+<P>&nbsp;&nbsp;&nbsp; Ví d&#7909; 2: Vi&#7871;t th&#7911; t&#7909;c thêm m&#7897;t bô vào 
+b&#7843;ng ch&#7845;m công</p>
+<strong>
+<p><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#000000">CREATE PROCEDURE ThemPhanCong</font></em></P>
+<p><em style="font-style: normal"><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (</font></em></strong></P>
+<p><strong>
+<em style="font-style: normal"><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @MaGV nvarchar(10),
+</font>
+</em>
+<font color="#000000">
+<br></font><em style="font-style: normal"><font color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @MaMH nvarchar(50),</font></em><font color="#000000"><br>
+</font><em style="font-style: normal"><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+@SoTiet int,</font></em><font color="#000000"><br></font>
+<em style="font-style: normal"><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+@Buoi nvarchar(50),</font></em><font color="#000000"><br></font>
+<em style="font-style: normal"><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+@Ngay datetime,</font></em></strong></P>
+<p><em style="font-weight: 400; font-style: normal"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+@kq int output</font></strong></em></P>
+<p><em style="font-weight: 400; font-style: normal"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; )</font></strong></em><font color="#000000"></br>
+</font></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AS<br>
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+Begin</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+if(exists(select * from BangChamCong where MaMH = @MaMH and MaGV = @MaGV and 
+Buoi = @Buoi and Ngay =@Ngay))</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; begin</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+print 'trung khoa chinh'</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set @kq = 0</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end&nbsp; 
+</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if(not exists(select * from 
+MonHoc where 
+MaMH = @MaMH) or not exists (select * from GiaoVien where MaGV = @MaGV)</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; begin</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+print 'vi pham rang buoc khoa ngoai'</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set @kq = -1</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; begin</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; insert into 
+BangChamCong(MaGV, MaMH, SoTiet, Buoi, Ngay) </font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; values (@MaGV, 
+@MaMH, @SoTiet, @Buoi, @Ngay)</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; print 'Them thanh 
+cong'</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set @kq = 1</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; end</font></strong></em></P>
+<P><em style="font-style: normal; font-weight: 400"><strong>
+<font color="#000000">&nbsp;&nbsp;&nbsp; GO</font></strong></em></P>
+<P>&nbsp;&nbsp;&nbsp; Th&#7921;c thi:</p>
+<P><strong><em style="font-style: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font color="#000000">declare @t int</font></em></strong></P>
+<P><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+exec ThemPhanCong 'GV01', 'MH01', 4, 'Sang', '12/3/2008', @t output</font></strong></em></P>
+<P><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print cast(@t as nvarchar(3))</font></strong></em></P>
+<P>&nbsp;&nbsp;&nbsp; Ví d&#7909; 3:</P>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vi&#7871;t th&#7911; t&#7909;c tính 
+ti&#7873;n gi&#7843;ng d&#7841;y cho giáo viên. Bi&#7871;n &#273;&#7847;u vào cho th&#7911; t&#7909;c là mã giáo viên. Bi&#7871;n &#273;&#7847;u 
+ra là s&#7889; ti&#7873;n. Công th&#7913;c tính nh&#432; sau:</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; T&#7893;ng ti&#7873;n = T&#7893;ng s&#7889; 
+ti&#7871;t * 20.000.</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; T&#7893;ng s&#7889; ti&#7871;t = t&#7893;ng 
+s&#7889; ti&#7871;t th&#7921;c d&#7841;y *1.5 n&#7871;u nh&#432; s&#7889; sinh viên &#273;&#259;ng kí môn h&#7885;c &#273;ó &gt; 80 sinh viên c&#7911;a 
+t&#7915;ng môn h&#7885;c mà giáo viên &#273;ó tham gia gi&#7843;ng d&#7841;y.</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp; 
+CREATE PROCEDURE TinhTienGiangDay</font></strong></em></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in"><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+(</font></strong></em></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in"><em style="font-style: normal"><strong><font color="#000000">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @MaGV nvarchar(10),</font></strong></em></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in"><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @TongTien int output</font></strong></em></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in"><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+)</font></strong></em></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in"><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+AS</font></strong></em></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in"><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+begin</font></strong></em></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in"><em style="font-style: normal"><strong><font color="#000000">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; declare @t1 int, @t2 int</font></strong></em></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in"><em style="font-style: normal"><strong><font color="#000000">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; select @t1=sum(SoTiet) * 1.5</font></strong></em></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in"><em style="font-style: normal"><strong><font color="#000000">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from ChamCong cc, MonHoc m</font></strong></em></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in"><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where cc.MaMH = m.MaMH and m.TongSoDK &gt;80&nbsp;and cc.MaGV = @MaGV&nbsp;&nbsp;&nbsp;&nbsp;
+</font></strong></em></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in"><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select&nbsp; @t2=sum(SoTiet) </font></strong></em></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in"><em style="font-style: normal"><strong><font color="#000000">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from ChamCong cc, MonHoc m</font></strong></em></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in"><em style="font-style: normal"><strong><font color="#000000">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; where cc.MaMH = m.MaMH and m.TongSoDK &lt;80 and 
+cc.MaGV = @MaGV</font></strong></em></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in"><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set @TongTien = (@t1 + @t2)*20000</font></strong></em></p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0in"><em style="font-style: normal"><strong><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+end</font></strong></em></p>
+<P><em><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></em>&nbsp;Th&#7921;c 
+thi:</P>
+<P class="MsoNormal" style="margin: 6.0pt 0in"><em><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font color="#000000">&nbsp;</font></strong></em><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+declare @TongTien int</b></P>
+<P class="MsoNormal" style="margin: 6.0pt 0in"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exec 
+TinhTienGiangDay 'GV01', @TongTien output</b></P>
+<P class="MsoNormal" style="margin: 6.0pt 0in"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print cast(@TongTien as nvarchar(3))</b></P>
+<P class="MsoNormal" style="margin: 6.0pt 0in">&nbsp;</P>
+
+<H1 class=heading1><em><strong>4. Vi&#7871;t th&#7911; t&#7909;c trong SQL-Server</strong></em></H1>
+
+<P><STRONG><em>1.&nbsp;Ch&#7885;n Database --&gt;ch&#7885;n c&#417; s&#7903; d&#7919; li&#7879;u mu&#7889;n 
+vi&#7871;t th&#7911; t&#7909;c --&gt;chu&#7897;t ph&#7843;i Stored Procedure --&gt; ch&#7885;n New Stored Procedure.</em></STRONG></P>
+<blockquote>
+	<P>
+	<em><strong>
+	<img border="0" src="c4.htm1.gif"></strong></em></P>
+</blockquote>
+
+<P><strong><em>2.&nbsp;Vi&#7871;t mã.</em></strong></P>
+<blockquote>
+	<P>
+	<em><strong>
+	<img border="0" src="c4.htm2.jpg"></strong></em></P>
+</blockquote>
+<P><strong><em>3.&nbsp;Th&#7921;c thi.</em></strong></P>
+<P>&nbsp;</P>
+<P><em><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></em> <img border="0" src="c4.htm3.jpg"></P>
+<P>&nbsp;</P>
+<H1 class=heading1><em>5. bài t&#7853;p</em></H1>
+
+<P><STRONG><FONT color=#ff0000>1.&nbsp;Trên c&#417; s&#7903; d&#7919; li&#7879;u </FONT>
+<font color="#6600ff">DeAn</font><FONT color=#ff0000> và </FONT>
+<font color="#6600ff">NganHang</font><FONT color=#ff0000> và </FONT>
+<font color="#6600ff">QuanLyHocVien</font><FONT color=#ff0000> vi&#7871;t các store procedure.</FONT></STRONG></P>
+<ol>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">Vi&#7871;t 
+	store procedure cho vi&#7879;c thêm d&#7919; li&#7879;u vào các b&#7843;ng. N&#7871;u thành công tr&#7843; v&#7873; 1, 
+	ng&#432;&#7907;c l&#7841;i tr&#7843; v&#7847; 0.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">Vi&#7871;t 
+	các Store Procedure cho vi&#7879;c c&#7853;p nh&#7853;t d&#7919; li&#7879;u cho các b&#7843;ng. N&#7871;u thành công 
+	tr&#7843; v&#7873; 1. Ng&#432;&#7907;c l&#7841;i tr&#7843; v&#7873; 0.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">Vi&#7871;t 
+	các store Procedure cho vi&#7879;c xóa, d&#7919; li&#7879;u trong các b&#7843;ng. N&#7871;u thành công tr&#7843; 
+	v&#7873; 1, ng&#432;&#7907;c l&#7841;i tr&#7843; v&#7873; 0.&nbsp;
+	</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">C&#7853;p 
+	nh&#7853;t tên &#273;&#7873; án, n&#7871;u &#273;&#7873; án t&#7891;n t&#7841;i trong b&#7843;ng DeAn, c&#7853;p nh&#7853;t và tr&#7843; v&#7873; 1, 
+	ng&#432;&#7907;c l&#7841;i tr&#7843; v&#7873; 0.</p>
+	</li>
+</ol>
+
+<P><STRONG><FONT color=#ff0000>2.&nbsp;Trên c&#417; s&#7903; d&#7919; li&#7879;u </FONT>
+<font color="#6600ff">DeAn</font><FONT color=#ff0000> và </FONT>
+<font color="#6600ff">NganHang</font><FONT color=#ff0000> vi&#7871;t các store procedure 
+có tham s&#7889; &#273;&#7847;u ra nh&#432; sau:</FONT></STRONG></P>
+<ol>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">&#272;&#432;a vào 
+	mã nhân viên, n&#7871;u nhân viên này t&#7891;n t&#7841;i thì tr&#7843; v&#7873; l&#432;&#417;ng c&#7911;a nhân viên &#273;ó, 
+	n&#7871;u không tìm th&#7845;y tr&#7843; v&#7873; 0.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">&#272;&#432;a vào 
+	mã phòng, n&#7871;u không tìm th&#7845;y phòng &#273;ó tr&#7843; v&#7873; 0, ng&#432;&#7907;c l&#7841;i tr&#7843; v&#7873; l&#432;&#417;ng trung 
+	bình c&#7911;a phòng &#273;ó.</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">&#272;&#432;a vào 
+	mã &#273;&#7873; án, n&#7871;u tìm không th&#7845;y tr&#7843; v&#7873; 0, ng&#432;&#7907;c l&#7841;i tr&#7843; v&#7873; s&#7889; gi&#7901; làm trung 
+	bình c&#7911;a &#273;&#7873; án &#273;ó.&nbsp;
+	</p></li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">&#272;&#432;a vào 
+	s&#7889; tài kho&#7843;n, n&#7871;u tài kho&#7843;n g&#7903;i &#273;ó không t&#7891;n t&#7841;i, tr&#7843; v&#7873; 0, ng&#432;&#7907;c l&#7841;i tr&#7843; v&#7873; 
+	s&#7889; ti&#7873;n g&#7903;i và mã khách hàng c&#7911;a ng&#432;&#7901;i &#273;ó.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">&#272;&#432;a vào 
+	mã khách hàng, n&#7871;u mã khách hàng &#273;ó không t&#7891;n t&#7841;i, tr&#7843; v&#7873; 0, ng&#432;&#7907;c l&#7841;i tr&#7843; 
+	v&#7873; tên và &#273;&#7883;a ch&#7881; c&#7911;a khách hàng &#273;ó.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">Tính 
+	trung bình tài kho&#7843;n g&#7903;i.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">Tìm &#273;i&#7875;m cao nh&#7845;t 
+	c&#7911;a h&#7885;c viên.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">Thêm 
+	m&#7897;t b&#7897; d&#7919; li&#7879;u vào tài kho&#7843;n vay, ki&#7875;m tra sao cho m&#7897;t khách hàng không &#273;&#432;&#7907;c 
+	m&#7903; nhi&#7873;u h&#417;n 3 tài kho&#7843;n vay. Thêm thành công hay không &#273;&#432;&#7907;c l&#432;u vào bi&#7871;n 
+	tr&#7841;ng thái &#273;&#7847;u ra.</p>
+	</li>
+	<li>
+	<p class="MsoNormal" style="text-indent: -.25in; margin-left: .75in">Vi&#7871;t 
+	th&#7911; t&#7909;c &#273;&#432;a vào mã ngân hàng, tính t&#7893;ng tài s&#7843;n c&#7911;a ngân hàng c&#7911;a ngân hàng 
+	&#273;ó.</p>
+	</li>
+</ol>
+</DIV>
+<DIV id=signature><FONT face=Verdana size=2><A 
+href="http://informatics.indiana.edu/"><IMG src="c1_files/informatics_blue.gif" 
+border=0></A> <BR>Liên L&#7841;c: nttbinhdl@gmail.com&nbsp; </FONT></DIV>
+
+</BODY></HTML>

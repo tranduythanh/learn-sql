@@ -1,0 +1,442 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0052)http://informatics.indiana.edu/rocha/i101/lab10.html -->
+<HTML xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40"><HEAD><TITLE>Th&#7921;c hành C&#417; S&#7903; D&#7919; Li&#7879;u - Lab 1</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252"><LINK 
+title=style href="c1_files/cybercorner_style_nomenu.css" type=text/css 
+rel=stylesheet>
+<META content="Luis Mateus Rocha, Santiago Schnell" name=author>
+<META http-equiv=copyright content="Luis Mateus Rocha, Santiago Schnell">
+<META http-equiv=reply-to content=rocha@lanl.gov>
+<META http-equiv=resource-type content=document>
+<META http-equiv=decription 
+content="Course Materials for I101 Introduction to Informatics">
+<META http-equiv=keywords 
+content="Luis Rocha, Santiago Schnell, Informatics, Information, Knowledge, technology.">
+<META url=http://informatics.indiana.edu/rocha/I101/lab10.html>
+<META content="MSHTML 6.00.3790.0" name=GENERATOR>
+
+
+<link rel="File-List" href="c1_files/filelist.xml">
+
+
+
+<style>
+<!--
+ table.MsoNormalTable
+	{mso-style-parent:"";
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+<!--[if !mso]>
+<style>
+v\:*         { behavior: url(#default#VML) }
+o\:*         { behavior: url(#default#VML) }
+.shape       { behavior: url(#default#VML) }
+</style>
+<![endif]--><!--[if gte mso 9]>
+<xml><o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]-->
+</HEAD>
+<BODY>
+<DIV id=content>
+<H1 class=title><u>lab1</u>:ki&#7875;u d&#7919; 
+li&#7879;u c&#417; b&#7843;n -&nbsp; t&#7841;o C&#417; s&#7903; d&#7919; li&#7879;u-&nbsp; t&#7841;o b&#7843;ng</H1>
+<H1 class=heading1><em>1. Làm quen v&#7899;i môi tr&#432;&#7901;ng SQL Server 2000</em></H1>
+<P><FONT color=#ff0000><STRONG>1. M&#7903; SQL Server 2000 t&#7915; Start -&gt; Programs -&gt; 
+Microsoft SQL Server -&gt; </STRONG></FONT></P>
+<P><FONT color=#ff0000><STRONG>Enterprise Manager:</STRONG></FONT></P>
+<P>&#272;&#7875; qu&#7843;n lý các c&#417; s&#7903; d&#7919; li&#7879;u</P>
+<span style="font-size: 12.0pt; font-family: Times New Roman">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_s1032" type="#_x0000_t75" style='width:474.75pt;
+ height:474.75pt'>
+ <v:imagedata src="c1_files/image001.png" o:title="" cropbottom="2185f"
+  cropright="25941f"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=633 height=633
+src="c1_files/image002.jpg" v:shapes="_x0000_s1032"><![endif]></span><P>Ch&#7885;n Query Analyzer &#273;&#7875; vi&#7871;t các câu truy v&#7845;n SQL trên c&#417; s&#7903; d&#7919; li&#7879;u</P>
+<P><STRONG><FONT color=#ff0000>2. </FONT></STRONG><FONT color=#ff0000><STRONG>M&#7903; 
+SQL Server 2000 t&#7915; Start -&gt; Programs -&gt; Microsoft SQL Server -&gt; </STRONG></FONT></P>
+<p><strong><font color="#FF0000">Query Analyzer:</font></strong></p>
+<P>&#272;&#7875; th&#7921;c hi&#7879;n truy v&#7845;n trên c&#417; s&#7903; d&#7919; li&#7879;u </P>
+<span style="font-size: 12.0pt; font-family: Times New Roman">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[if gte vml 1]><v:shape
+ id="_x0000_s1034" type="#_x0000_t75" style='width:483pt;height:541.5pt'>
+ <v:imagedata src="c1_files/image003.png" o:title="" cropbottom="4370f"
+  cropright="31327f"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=644 height=722
+src="c1_files/image004.jpg" v:shapes="_x0000_s1034"><![endif]></span><P>&nbsp;</P>
+<H1 class=heading1><EM>1. các ki&#7875;u d&#7919; li&#7879;u c&#417; b&#7843;n </A></EM></H1>
+<p>&nbsp;</p>
+<table border="1" width="90%" id="table7">
+	<tr>
+		<td width="142" align="center"><b>Ki&#7875;u d&#7919; li&#7879;u</b></td>
+		<td width="278" align="center"><b>Chú thích</b></td>
+		<td width="135" align="center"><b>Ki&#7875;u d&#7919; li&#7879;u</b></td>
+		<td align="center"><b>Chú thích</b></td>
+	</tr>
+	<tr>
+		<td width="142">bit</td>
+		<td width="278">d&#7919; li&#7879;u ch&#7881; có hai giá tr&#7883; 0, 1</td>
+		<td width="135">Char</td>
+		<td>Ki&#7875;u kí t&#7921;</td>
+	</tr>
+	<tr>
+		<td width="142">binary</td>
+		<td width="278">chu&#7895;i nh&#7883; phân</td>
+		<td width="135">nchar</td>
+		<td>Ki&#7875;u kí t&#7921; unicode</td>
+	</tr>
+	<tr>
+		<td width="142">varbinary</td>
+		<td width="278">bi&#7871;n chu&#7895;i nhi phân</td>
+		<td width="135">varchar</td>
+		<td>bi&#7871;n kí t&#432;</td>
+	</tr>
+	<tr>
+		<td width="142">tinyint</td>
+		<td width="278">s&#7889; nguyên bé (0 -&gt; 255)</td>
+		<td width="135">nvarchar</td>
+		<td>bi&#7871;n kí t&#7921; unicode</td>
+	</tr>
+	<tr>
+		<td width="142">smallint</td>
+		<td width="278">s&#7889; nguyên nh&#7887; (-2^15-&gt;2^14)</td>
+		<td width="135">datetime</td>
+		<td>ki&#7875;u ngày gi&#7901; (8 byte)</td>
+	</tr>
+	<tr>
+		<td width="142">Int</td>
+		<td width="278">s&#7889; nguyên (-2^31-&gt;2^30)</td>
+		<td width="135">smalldatetime</td>
+		<td>Ki&#7875;u ngày gi&#7901; (4 byte)</td>
+	</tr>
+	<tr>
+		<td width="142">Bigint</td>
+		<td width="278">s&#7889; nguyên l&#7899;n(-2^63-&gt;2^62)</td>
+		<td width="135">smallmoney</td>
+		<td>d&#7919; li&#7879;u ti&#7873;n t&#7879;(-2^32 -&gt; 2^32)</td>
+	</tr>
+	<tr>
+		<td width="142">Decimal</td>
+		<td width="278">s&#7889; th&#7853;p phân(-10^38-&gt;10^38)</td>
+		<td width="135">Money</td>
+		<td>d&#7919; li&#7879;u ti&#7873;n t&#7879;(-2^64-&gt;2^64)</td>
+	</tr>
+	<tr>
+		<td width="142">Numeric</td>
+		<td width="278">t&#432;&#417;ng t&#7921; ki&#7875;u decimal.</td>
+		<td width="135">image</td>
+		<td>Ki&#7875;u d&#7919; li&#7879;u nh&#7883; phân(0 -&gt; 2^31)</td>
+	</tr>
+	<tr>
+		<td width="142">Float</td>
+		<td width="278">s&#7889; th&#7921;c (8 byte)</td>
+		<td width="135">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="142">Real</td>
+		<td width="278">s&#7889; th&#7921;c (4 byte)</td>
+		<td width="135">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="142">text</td>
+		<td width="278">chu&#7895;i kí t&#7921;</td>
+		<td width="135">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="142">Ntext</td>
+		<td width="278">chu&#7895;i kí t&#7921; unicode</td>
+		<td width="135">&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<p>&nbsp;</p>
+<H1 class=heading1><EM>2. T&#7841;o c&#417; s&#7903; d&#7919; li&#7879;u trong SQL</EM></H1>
+<P>Vào Enterprise Management -&gt; (LOCAL)(Windows NT) -&gt; Database 
+-&gt; chu&#7897;t ph&#7843;i -&gt;New Database...</P>
+<P>&nbsp;&nbsp;&nbsp; Ví d&#7909;: t&#7841;o c&#417; s&#7903; d&#7919; li&#7879;u &#273;&#7875; qu&#7843;n lý ch&#7845;m công v&#7899;i tên 
+QuanLyChamCong</P><span style="font-size: 12.0pt; font-family: Times New Roman">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[if gte vml 1]><v:shape
+ id="_x0000_s1031" type="#_x0000_t75" style='width:403.5pt;height:309.75pt'>
+ <v:imagedata src="c1_files/image005.png" o:title="" cropbottom="15292f"
+  cropright=".375"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=538 height=413
+src="c1_files/image006.jpg" v:shapes="_x0000_s1031"><![endif]></span><P>&nbsp;</P>
+<H1 class=heading1><EM>3. t&#7841;o b&#7843;ng trong sql </EM></H1>
+<p>Ví d&#7909;: &#272;&#7875; qu&#7843;n lý vi&#7879;c ch&#7845;m công cho giáo viên gi&#7843;ng d&#7841;y, ng&#432;&#7901;i ta c&#7847;n 
+l&#432;u tr&#7919; nh&#7919;ng thông tin sau:</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:.25in">&nbsp;&nbsp;&nbsp; -&nbsp; GiaoVien( MaGV, HoGV, TenGV, 
+DiaChi, SoDT)</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:.25in">&nbsp;&nbsp;&nbsp; -&nbsp; MonHoc( MaMH, TenMH, TongSoDK)</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:.25in">&nbsp;&nbsp;&nbsp; -&nbsp; BangChamCong( MaGV, MaMH, SoTiet, 
+Buoi, Ngay)</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:.25in">&nbsp;&nbsp;&nbsp; Di&#7877;n gi&#7843;i:</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:.25in">&nbsp;&nbsp;&nbsp; -&nbsp; Thông tin v&#7873; giáo viên g&#7891;m có mã 
+giáo viên( MaGV), m&#7895;i giáo viên có m&#7897;t mã duy nh&#7845;t &#273;&#7875; phân bi&#7879;t v&#7899;i các giáo 
+viên khác, có h&#7885;( HoGV), có tên( TenGV), &#273;&#7883;a ch&#7881;( DiaChi), s&#7889; &#273;i&#7879;n tho&#7841;i( SoDT).</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:.25in">&nbsp;&nbsp;&nbsp; -&nbsp; Môn h&#7885;c g&#7891;m nh&#7919;ng thông tin mã môn 
+h&#7885;c( MaMH), tên môn h&#7885;c( TenMH). Mã môn h&#7885;c là duy nh&#7845;t &#273;&#7875; phân bi&#7879;t v&#7899;i môn h&#7885;c 
+khác.</p>
+<p class="MsoNormal" style="margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:.25in">&nbsp;&nbsp;&nbsp; -&nbsp; T&#7893;ng s&#7889; sinh viên &#273;&#259;ng kí h&#7885;c( 
+TongSoDK) m&#7897;t môn h&#7885;c s&#7869; &#273;&#432;&#7907;c l&#432;u l&#7841;i &#273;&#7875; cho vi&#7879;c tính h&#7879; s&#7889; l&#7899;p &#273;ông cho giáo 
+viên..</p>
+<p class="MsoNormal" style="margin-left:.25in">&nbsp;&nbsp;&nbsp; -&nbsp; M&#7895;i 
+bu&#7893;i giáo viên lên l&#7899;p gi&#7843;ng d&#7841;y s&#7869; &#273;&#432;&#7907;c l&#432;u trong b&#7843;ng ch&#7845;m công v&#7899;i thông tin 
+v&#7873; giáo viên, môn h&#7885;c, s&#7889; ti&#7871;t, bu&#7893;i d&#7841;y( sáng/ chi&#7873;u/ t&#7889;i) và ngày d&#7841;y.</p>
+<p>Mu&#7889;n t&#7841;o b&#7843;ng GiaoVien, vào Database -&gt; StudentManagement -&gt; Tables -&gt; chu&#7897;t ph&#7843;i -&gt; 
+New Table ..., sau khi t&#7841;o b&#7843;ngxong thì nh&#7845;n nút l&#432;u l&#7841;i, h&#7897;p tho&#7841;i Choose Name 
+cho nh&#7853;p tên b&#7843;ng c&#7847;n l&#432;u.</p>
+<span style="font-size: 13.0pt; font-family: Times New Roman">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[if gte vml 1]><v:shape
+ id="_x0000_s1030" type="#_x0000_t75" style='width:375pt;height:420pt'>
+ <v:imagedata src="c1_files/image007.png" o:title="" cropbottom="4369f"
+  cropright="31403f"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=500 height=560
+src="c1_files/image008.jpg" v:shapes="_x0000_s1030"><![endif]></span><p>&nbsp;&nbsp;&nbsp; 
+Chú ý:&nbsp;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp; Khi t&#7841;o b&#7843;ng d&#7919; li&#7879;u, ph&#7843;i 
+xác &#273;&#7883;nh ki&#7875;u d&#7919; li&#7879;u và kích th&#432;&#7899;c. </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - S&#7921; khác bi&#7879;t gi&#7919;a char và 
+varchar:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ví d&#7909;:</p>
+<blockquote>
+	<blockquote>
+		<p>&nbsp;&nbsp;&nbsp; Ta có khai báo TenGV char(20): có ngh&#297;a tr&#432;&#7901;ng d&#7919; 
+		li&#7879;u tên giáo viên có &#273;&#7897; dài 20 kí t&#7921;, n&#7871;u tên ng&#7855;n h&#417;n 20 kí t&#432;, thì kí 
+		t&#7921; tr&#7855;ng s&#7869; &#273;&#432;&#7907;c t&#7921; &#273;&#7897;ng chèn vào cho &#273;&#7911; 20 kí t&#7921;, còn n&#7871;u tên dài h&#417;n 
+		20 kí t&#7921;, thì chu&#7895;i s&#7869; t&#7921; &#273;&#7897;ng b&#7883; c&#7855;t b&#7899;t ch&#7881; còn 20 kí t&#7921;</p>
+		<p>&nbsp;&nbsp;&nbsp; Còn khi ta khai báo TenGV varchar(20): có ngh&#297;a 
+		tr&#432;&#7901;ng d&#7919; li&#7879;u tên giáo viên có &#273;&#7897; dài 20 kí t&#7921;, n&#7871;u tên ng&#7855;n h&#417;n 20 kí 
+		t&#432;, thì chi&#7873;u dài chu&#7895;i s&#7869; &#273;úng b&#7857;ng chi&#7873;u dài tên, còn n&#7871;u tên dài h&#417;n 
+		20 kí t&#7921;, thì chu&#7895;i s&#7869; t&#7921; &#273;&#7897;ng b&#7883; c&#7855;t b&#7899;t ch&#7881; còn 20 kí t&#7921;</p>
+	</blockquote>
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp; Khi t&#7841;o b&#7843;ng c&#7847;n ph&#7843;i xác &#273;&#7883;nh khóa chính cho b&#7843;ng. Cách 
+t&#7841;o khóa nh&#432; sau: chon nh&#7919;ng thu&#7897;c tính khóa, sau &#273;ó nh&#7845;n nút
+<img border="0" src="c1.htm4.gif"> set primary key.</p>
+<p>&nbsp;&nbsp;&nbsp; Ví d&#7909;: khóa m&#7897;t thu&#7897;c tính.</p>
+<span style="font-size: 12.0pt; font-family: Times New Roman">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[if gte vml 1]><v:shape
+ id="_x0000_s1029" type="#_x0000_t75" style='width:258pt;height:171.75pt'>
+ <v:imagedata src="c1_files/image009.png" o:title="" cropbottom="43691f"
+  cropright=".6875"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=344 height=229
+src="c1_files/image010.jpg" v:shapes="_x0000_s1029"><![endif]></span><p>&nbsp;&nbsp;&nbsp; 
+Ví d&#7909;: khóa nhi&#7873;u thu&#7897;c tính:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span style="font-size: 12.0pt; font-family: Times New Roman"><!--[if gte vml 1]><v:shape
+ id="_x0000_s1028" type="#_x0000_t75" style='width:258.75pt;height:184.5pt'>
+ <v:imagedata src="c1_files/image011.png" o:title="" cropbottom="43691f"
+  cropright="46421f"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=345 height=246
+src="c1_files/image012.jpg" v:shapes="_x0000_s1028"><![endif]></span></p>
+<H1 class=heading1><EM>4. t&#7841;o quan h&#7879; gi&#7919;a các b&#7843;ng</EM></H1>
+
+<p>1. Vào Database -&gt; C&#417; s&#7903; d&#7919; li&#7879;u -&gt; Diagrams -&gt; chu&#7897;t ph&#7843;i -&gt; New Database 
+Diagrams</p>
+<p>&nbsp;&nbsp;&nbsp; <img border="0" src="c1.htm1.gif"></p>
+<p>2. Ch&#7885;n Next -&gt; ch&#7885;n b&#7843;ng -&gt; nh&#7845;n nút Add -&gt; Next -&gt; Finish.</p>
+<p>&nbsp;&nbsp;&nbsp; 
+<span style="font-size: 12.0pt; font-family: Times New Roman"><!--[if gte vml 1]><v:shape
+ id="_x0000_s1027" type="#_x0000_t75" style='width:372pt;height:293.25pt'>
+ <v:imagedata src="c1_files/image013.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=496 height=391
+src="c1_files/image014.jpg" v:shapes="_x0000_s1027"><![endif]></span></p>
+<p>3. T&#7841;o quan h&#7879;</p>
+<p>&nbsp;&nbsp;&nbsp; Ch&#7885;n b&#7843;ng c&#7847;n t&#7841;o quan h&#7879; -&gt; chu&#7897;t ph&#7843;i -&gt; Propeites -&gt; 
+Relationships -&gt; New. Ch&#7885;n các b&#7843;ng t&#432;&#417;ng &#7913;ng.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span style="font-size: 12.0pt; font-family: Times New Roman"><!--[if gte vml 1]><v:shape
+ id="_x0000_s1026" type="#_x0000_t75" style='width:299.25pt;height:379.5pt'>
+ <v:imagedata src="c1_files/image015.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=399 height=506
+src="c1_files/image016.jpg" v:shapes="_x0000_s1026"><![endif]></span></p>
+<p><span style="font-family: Times New Roman"><font size="3">&nbsp;&nbsp;&nbsp;
+</font></span>Sau khi ch&#7885;n các b&#7843;ng &#273;&#7875; t&#7841;o quan h&#7879;, ch&#7885;n các thu&#7897;c tính khóa 
+chính và khóa ngo&#7841;i t&#432;&#417;ng &#7913;ng.</p>
+<p><font face="Times New Roman" size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img border="0" src="c1.htm7.jpg"></font></p>
+<p>Sau khi t&#7841;o xong quan h&#7879; gi&#7919;a các b&#7843;ng, nh&#7845;n nút l&#432;u, &#273;&#7863;t tên cho l&#432;&#7907;c &#273;&#7891;.</p>
+<span style="font-size: 12.0pt; font-family: Times New Roman">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!--[if gte vml 1]><v:shape
+ id="_x0000_s1025" type="#_x0000_t75" style='width:324.75pt;height:393pt'>
+ <v:imagedata src="c1_files/image017.png" o:title="" cropbottom="15292f"
+  cropright="39595f"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=433 height=524
+src="c1_files/image018.jpg" v:shapes="_x0000_s1025"><![endif]></span><p>&nbsp;</p>
+<H1 class=heading1><em>5. Bài t&#7853;p&nbsp; </em></H1>
+
+<P><b><font color="#FF0000">1. Qu&#7843;n lý &#273;&#7873; án c&#7911;a nhân viên nh&#432; sau:</font></b></P>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.25in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>L&#432;&#7907;c &#273;&#7891; <b><font color="#6600FF">NhanVien</font></b>(HoNV, 
+TenLot, TenNV, <u>MaNV,</u> NgaySinh, DiaChi, Phai, Luong, Ma_NQL, Phong)</p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.25in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>L&#432;&#7907;c &#273;&#7891; <b><font color="#6600FF">PhongBan</font></b>(TenPhong, 
+<u>MaPHG</u>, TruongPHG, Ngay_NChuc)</p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.25in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>L&#432;&#7907;c &#273;&#7891; <b><font color="#6600FF">DiaDiem_PHG</font></b>(<u>MaPHG</u>, 
+<u>DiaDiem</u>)</p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.25in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>L&#432;&#7907;c &#273;&#7891; <b><font color="#6600FF">DeAn</font></b>(TenDA,
+<u>MaDA</u>, DiaDiem_DA, Phong)</p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.25in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>L&#432;&#7907;c &#273;&#7891; <b><font color="#6600FF">PhanCong</font></b>(<u>MaNV</u>,
+<u>SoDA</u>, ThoiGian)</p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.25in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>L&#432;&#7907;c &#273;&#7891; <b><font color="#6600FF">ThanNhan</font></b>(<u>MaNV</u>,
+<u>TenTN</u>, Phai, NgaySinh, QuanHe)&nbsp;</p>
+<p class="MsoNormal" style="margin-left:1.0in"><u>Trong &#273;ó:</u></p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 2.0in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>HoNV, TenLot, TenNV<i>, </i>MaNV, NgaySinh, DiaChi, Phai, Luong, 
+Ma_NQL, Phong<i> : h&#7885;, tên lót, tên, mã, ngày sinh, &#273;&#7883;a ch&#7881;, phái, l&#432;&#417;ng, mã 
+ng&#432;&#7901;i qu&#7843;n lý,phòng c&#7911;a nhân viên.</i></p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 2.0in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="font-style:normal; font-variant:normal; font-weight:normal"> 
+TenPhong, MaPHG, TruongPHG, Ngay_NChuc:</span><i> Tên phòng, mã phòng, mã ng&#432;&#7901;i 
+tr&#432;&#7903;ng phòng, ngày nh&#7853;n ch&#7913;c.</i></p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 2.0in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="font-style:normal; font-variant:normal; font-weight:normal"> 
+TenDA, MaDA, DiaDiem_DA , SoDA</span><i>: tên &#273;&#7873; án, mã &#273;&#7873; án, &#273;&#7883;a &#273;i&#7875;m th&#7921;c 
+hi&#7879;n &#273;&#7873; án, s&#7889; &#273;&#7873; án.</i></p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 2.0in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>TenTN, QuanHe<i>:tên thân nhân, m&#7889;i quan h&#7879; c&#7911;a thân nhân 
+này v&#7899;i nhân viên</i></p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 2.0in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>
+<i>M&#7897;t phòng có th&#7875; n&#7857;m &#7903; nhi&#7873;u &#273;&#7883;a &#273;i&#7875;m khác nhau.</i></p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 2.0in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>
+<i>M&#7897;t nhân viên có th&#7875; tham gia làm nhi&#7873;u &#273;&#7873; án khác nhau c&#7911;a nhi&#7873;u phòng khác 
+nhau.</i></p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 2.0in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>
+<i>M&#7897;t phòng có th&#7875; &#273;&#432;a ra nhi&#7873;u &#273;&#7873; án.</i></p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 2.0in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>
+<i>M&#7897;t nhân viên có th&#7875; không có ho&#7863;c có nhi&#7873;u thân nhân.</i></p>
+<p class="MsoNormal" style="margin-left:.5in">&nbsp;Yêu c&#7847;u:</p>
+<p class="MsoNormal" style="margin-left:.5in">
+<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp; </span>T&#7841;o c&#417; s&#7903; d&#7919; li&#7879;u 
+có tên <font color="#6600FF"><b>DEAN</b></font> v&#7899;i các b&#7843;ng d&#7919; li&#7879;u nh&#432; sau:</p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.5in">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>B&#7843;ng <font color="#6600FF"><b>NhanVien</b></font></p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.5in">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>B&#7843;ng <font color="#6600FF"><b>PhongBan</b></font></p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.5in">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>B&#7843;ng 
+<font color="#6600FF"><b>DiaDiem_PHG</b></font></p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.5in">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>B&#7843;ng <font color="#6600FF"><b>DeAn</b></font></p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.5in">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>B&#7843;ng <font color="#6600FF"><b>PhanCong</b></font></p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.5in">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>B&#7843;ng <font color="#6600FF"><b>ThanNhan</b></font><P><b><font color="#FF0000">2. Ho&#7841;t &#273;&#7897;ng th&#7871; gi&#7899;i th&#7921;c c&#7911;a m&#7897;t ngân hàng &#273;&#432;&#7907;c mô t&#7843; qua nh&#7919;ng l&#432;&#7907;c &#273;&#7891; 
+quan h&#7879; nh&#432; sau:</font></b></P>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.25in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>L&#432;&#7907;c &#273;&#7891; <font color="#6600FF"><b>ChiNhanh</b></font>(MaNH, 
+<u>MaCN,</u> ThanhPhoCN, TaiSan)</p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.25in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>L&#432;&#7907;c &#273;&#7891; <font color="#6600FF"><b>NganHang</b></font>(<u>MaNH</u>, TenNH)</p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.25in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>L&#432;&#7907;c &#273;&#7891; <font color="#6600FF"><b>KhachHang</b></font>(<u>MaKH</u>, TenKH, DiaChi)</p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.25in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>L&#432;&#7907;c &#273;&#7891; <font color="#6600FF"><b>TaiKhoanVay</b></font>(MaKH, <u>MaCN</u>, <u>SoTKV</u>, SoTienVay)</p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.25in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>L&#432;&#7907;c &#273;&#7891; <font color="#6600FF"><b>TaiKhoanGo</b></font>i(MaKH, <u>MaCN</u>, <u>SoTKG</u>, SoTienGoi)</p>
+<p class="MsoNormal" style="margin-left:.5in">&nbsp;Yêu c&#7847;u:</p>
+<p class="MsoNormal" style="margin-left:.5in">
+<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp; </span>T&#7841;o c&#417; s&#7903; d&#7919; li&#7879;u
+<font color="#6600FF"><b>NganHang</b></font> v&#7899;i các b&#7843;ng d&#7919; li&#7879;u nh&#432; sau:</p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.5in">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>B&#7843;ng <b><font color="#6600FF">ChiNhanh</font></b></p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.5in">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>B&#7843;ng <font color="#6600FF"><b>NganHang</b></font></p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.5in">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>B&#7843;ng <font color="#6600FF"><b>KhachHang</b></font></p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.5in">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font:7.0pt &quot;Times New Roman&quot;">
+</span>B&#7843;ng <font color="#6600FF"><b>TaiKhoanVay</b></font></p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.5in">-<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>B&#7843;ng <font color="#6600FF"><b>TaiKhoanGoi</b></font></p>
+<P><font color="#FF0000"><b>3</b></font><b><font color="#FF0000">. M&#7897;t trung tâm 
+ngo&#7841;i ng&#7919; mu&#7889;n tin h&#7885;c hoà công tác qu&#7843;n lý ghi danh và k&#7871;t qu&#7843; h&#7885;c t&#7853;p c&#7911;a h&#7885;c 
+viên, c&#361;ng nh&#432; theo dõi các l&#7899;p h&#7885;c &#273;ã thi&#7871;t k&#7871; l&#432;&#7907;c &#273;&#7891; c&#417; s&#7903; d&#7919; li&#7879;u nh&#432; sau:</font></b></P>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.25in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="font-style:normal; font-variant:normal">L&#432;&#7907;c 
+&#273;&#7891;
+</span><font color="#6600FF"><b>KhoaHoc</b></font>(<u>MaKH</u>, TenKH, BD, KT)</p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.25in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="font-style:normal; font-variant:normal; font-weight:normal">L&#432;&#7907;c 
+&#273;&#7891;
+</span><font color="#6600FF"><b>HocVien</b></font>(<u>MaHV</u>, Ho, Ten, NgaySinh, 
+DiaChi, NgheNghiep)</p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.25in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="font-style:normal; font-variant:normal; font-weight:normal">L&#432;&#7907;c 
+&#273;&#7891;
+</span><font color="#6600FF"><b>GiaoVien</b></font>(<u>MaGV</u>, HoTen, NgaySinh, 
+DiaChi)</p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.25in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="font-style:normal; font-variant:normal; font-weight:normal">L&#432;&#7907;c 
+&#273;&#7891;</span><font color="#6600FF"><b> LopHoc</b></font>(<u>MaLH</u>, TenLop, MaKH, MaGV, 
+SiSo, LopTRG)</p>
+<p class="MsoNormal" style="text-indent: -.25in; margin-left: 1.25in">
+<span style="font-family: Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="font-style:normal; font-variant:normal; font-weight:normal">L&#432;&#7907;c 
+&#273;&#7891;
+</span><font color="#6600FF"><b>BienLai</b></font>(<u>MaKH</u>, MaLH, MaHV, <u>SoBL</u>, Diem, 
+KetQua, XepLoai, TienNop)</p>
+<P><b><font color="#FF0000">4. Yêu c&#7847;u 
+chung:</font></b></P>
+<P>-&nbsp; T&#7841;o c&#417; s&#7903; d&#7919; li&#7879;u và t&#7841;o b&#7843;ng 
+l&#7879;nh SQL.</P>
+<P>-&nbsp; Chú ý &#273;&#7871;n ki&#7875;u d&#7919; li&#7879;u, khóa chính, khóa ngo&#7841;i.</P>
+<P>-&nbsp; T&#7841;o các quan h&#7879; gi&#7919;a các b&#7843;n.</P>
+<P><b><a href="index.html"><u>Tr&#7903; L&#7841;i</u></a></b></P>
+</DIV>
+<DIV id=signature><FONT face=Verdana size=2><A 
+href="http://informatics.indiana.edu/">
+	<IMG src="c1_files/informatics_blue.gif" 
+border=0></A> <BR>Liên l&#7841;c: </FONT>nttbinhdl@gmail.com</DIV>
+
+<p>&nbsp;</p>
+
+</BODY></HTML>
